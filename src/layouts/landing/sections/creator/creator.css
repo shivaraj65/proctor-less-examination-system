@@ -1,0 +1,18 @@
+.background{
+    position: absolute;
+    /* height:50%; */
+    width:50%;
+    opacity: 0.5;
+    z-index:0;
+    text-align: center;
+}
+.top-content-creator-section{
+    z-index:5;
+}
+@media(max-width:768px){
+    .background{
+        margin-top:25vh;
+        height:75vh;
+        width:90vw;
+    }
+}
