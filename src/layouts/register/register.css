@@ -1,0 +1,17 @@
+#register {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #ffffff;
+    background: #fce8a7;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #FFFFFF, #f8e4a4);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #FFFFFF, #fce8a8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  };
+
+  .register-heading{
+    padding-bottom: 30px;
+  }
+    

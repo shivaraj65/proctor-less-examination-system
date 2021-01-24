@@ -32,7 +32,7 @@ const submitHandlerLogin=(event)=>{
          const config  = {
                  headers: {
                      'Content-Type': 'application/x-www-form-urlencoded',
-                     'Access-Control-Allow-Origin':'*'
+                     'Access-Control-Allow-Origin':'*',  
                  }}
             axios.post('http://localhost:3001/loginUser', 
             QueryString.stringify(formData),config)
@@ -41,6 +41,9 @@ const submitHandlerLogin=(event)=>{
                 setPopupContent(response.data);
                 // redirect to the userdash
                 if(response.data.id){
+                    localStorage.setItem('userID', response.data.id);
+                    localStorage.setItem('userName', response.data.name);
+                    localStorage.setItem('userRollno', response.data.rollno);
                     redirect("/ul/"+response.data.id+"/"+response.data.name);
                 }else{
                     setPopupContent(response.data)
@@ -127,7 +130,7 @@ const submitHandlerLogin=(event)=>{
             centered
             >
             <Modal.Header closeButton>
-            <Modal.Title>Quizzler</Modal.Title>
+            <Modal.Title>E-proctor</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 {popupContent}

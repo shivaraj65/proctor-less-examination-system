@@ -10,7 +10,7 @@
     background: #FFEFBA;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to bottom, #FFFFFF, #FFEFBA);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to bottom, #FFFFFF, #FFEFBA); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    
+
   }
   a:hover{
     cursor: pointer;
@@ -23,8 +23,8 @@
       border: 1.2px solid #c2a545b6;
   }
   .form-signin {
-    width: 100%;
-    max-width: 330px;
+    width: 93%;
+    max-width: 400px;
     padding: 15px;
     padding: 30px 15px;
     margin: auto;

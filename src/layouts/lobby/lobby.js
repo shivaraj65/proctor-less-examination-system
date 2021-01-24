@@ -37,12 +37,22 @@ const Lobby=()=>{
                 <div className="col-md-4">
                         <div className="card p-4 my-4 mx-3 custom-findQuiz-bg">
                             <label className="text-secondary text-center">Check your Device Compatability.</label> 
-                            <button className="btn btn-lg btn-primary btn-block my-3" >TEST</button>
+                            <button 
+                                className="btn btn-lg btn-primary btn-block my-3" 
+                                onClick={()=>{
+                                    redirect("/test")
+                                }}
+                            >TEST</button>
                         </div>
                 </div>
                 {/* right pane */}
-                <div className="col-md-8">
-                    
+                <div className="col-md-8 text-center">
+                    <button 
+                        className=""
+                        onClick={()=>{
+                            redirect("/exam")
+                        }   
+                    }>tester for the invigilation setup</button>
                 </div>
             </div>
         </div>
