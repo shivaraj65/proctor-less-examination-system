@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/static/css/main.b04c6b7a.chunk.css",
-    "main.js": "/static/js/main.d0a1c941.chunk.js",
-    "main.js.map": "/static/js/main.d0a1c941.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.eff68ae0.js",
-    "runtime-main.js.map": "/static/js/runtime-main.eff68ae0.js.map",
-    "static/js/2.1fd32a57.chunk.js": "/static/js/2.1fd32a57.chunk.js",
-    "static/js/2.1fd32a57.chunk.js.map": "/static/js/2.1fd32a57.chunk.js.map",
-    "static/js/3.c6d1a0bf.chunk.js": "/static/js/3.c6d1a0bf.chunk.js",
-    "static/js/3.c6d1a0bf.chunk.js.map": "/static/js/3.c6d1a0bf.chunk.js.map",
-    "index.html": "/index.html",
-    "static/css/main.b04c6b7a.chunk.css.map": "/static/css/main.b04c6b7a.chunk.css.map",
-    "static/js/2.1fd32a57.chunk.js.LICENSE.txt": "/static/js/2.1fd32a57.chunk.js.LICENSE.txt",
-    "static/media/App.css": "/static/media/bg-mast.c0467377.jpg",
-    "static/media/login-bg-123.4f8491a1.jpg": "/static/media/login-bg-123.4f8491a1.jpg",
-    "static/media/no_data.b4966e75.png": "/static/media/no_data.b4966e75.png",
-    "static/media/wallpaper-06.0111e02b.jpg": "/static/media/wallpaper-06.0111e02b.jpg"
+    "main.css": "/proctor-less-examination-system/static/css/main.0394a63b.chunk.css",
+    "main.js": "/proctor-less-examination-system/static/js/main.d0a1c941.chunk.js",
+    "main.js.map": "/proctor-less-examination-system/static/js/main.d0a1c941.chunk.js.map",
+    "runtime-main.js": "/proctor-less-examination-system/static/js/runtime-main.142ff4e7.js",
+    "runtime-main.js.map": "/proctor-less-examination-system/static/js/runtime-main.142ff4e7.js.map",
+    "static/js/2.1fd32a57.chunk.js": "/proctor-less-examination-system/static/js/2.1fd32a57.chunk.js",
+    "static/js/2.1fd32a57.chunk.js.map": "/proctor-less-examination-system/static/js/2.1fd32a57.chunk.js.map",
+    "static/js/3.c6d1a0bf.chunk.js": "/proctor-less-examination-system/static/js/3.c6d1a0bf.chunk.js",
+    "static/js/3.c6d1a0bf.chunk.js.map": "/proctor-less-examination-system/static/js/3.c6d1a0bf.chunk.js.map",
+    "index.html": "/proctor-less-examination-system/index.html",
+    "static/css/main.0394a63b.chunk.css.map": "/proctor-less-examination-system/static/css/main.0394a63b.chunk.css.map",
+    "static/js/2.1fd32a57.chunk.js.LICENSE.txt": "/proctor-less-examination-system/static/js/2.1fd32a57.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/proctor-less-examination-system/static/media/bg-mast.c0467377.jpg",
+    "static/media/login-bg-123.4f8491a1.jpg": "/proctor-less-examination-system/static/media/login-bg-123.4f8491a1.jpg",
+    "static/media/no_data.b4966e75.png": "/proctor-less-examination-system/static/media/no_data.b4966e75.png",
+    "static/media/wallpaper-06.0111e02b.jpg": "/proctor-less-examination-system/static/media/wallpaper-06.0111e02b.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.eff68ae0.js",
+    "static/js/runtime-main.142ff4e7.js",
     "static/js/2.1fd32a57.chunk.js",
-    "static/css/main.b04c6b7a.chunk.css",
+    "static/css/main.0394a63b.chunk.css",
     "static/js/main.d0a1c941.chunk.js"
   ]
 }
