@@ -16,6 +16,13 @@ import Tester from './layouts/deviceTest/tester'
 
 import Exam from './layouts/examZone/exam'
 
+//imports for the staff modules
+
+import Dash from './layouts/staffdash/dash'
+import StaffLogin from './layouts/staffLogin/staffLogin'
+
+
+
 function App() {
   return (
     <HashRouter>
@@ -38,6 +45,14 @@ function App() {
         <Route path="/exam">
           <Exam/>
         </Route>
+
+        <Route path="/sl">
+          <StaffLogin/>
+        </Route>
+        <Route path="/sd">
+          <Dash/>
+        </Route>
+
       </Switch>
     </HashRouter>
   );

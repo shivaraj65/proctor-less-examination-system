@@ -1,0 +1,45 @@
+/*  
+Thanks to: Usama Tahir
+https://medium.com/@AmJustSam
+*/
+.background1{
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  height:100vh;
+  width:100vw;
+  position: absolute;
+  z-index: -300;
+  margin: 0;
+  background-image: url("http://www.canterbury.ac.nz/business/what-can-i-study/taxation-and-accounting-/Taxation-and-Accounting_6533529509087445111.jpg");
+}
+ 
+ 
+ 
+.blurred-box {
+  width: 30rem;
+  max-width: 85%;
+  box-shadow: 0 0 1rem 0 rgba(48, 47, 47, 0.9); 
+  border-radius: 5px;
+  position: relative;
+  z-index: 1;
+  background: inherit;
+  overflow: hidden;
+  /* margin-left: 50%; */
+  margin: auto;
+  top:170px;
+  
+}
+
+.blurred-box:before {
+  content: "";
+  position: absolute;
+  background: inherit;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  box-shadow: inset 0 0 2000px rgba(80, 80, 80, 0.644);
+  filter: blur(10px);
+}
