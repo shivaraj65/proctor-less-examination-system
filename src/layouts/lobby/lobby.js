@@ -1,11 +1,11 @@
 import React,{useState,useEffect} from 'react'
 import { useHistory } from "react-router-dom";
 import {useParams} from "react-router-dom";
-
 import './lobby.css'
 
 const Lobby=()=>{
     let {uid,uname}=useParams()
+
     //for the redirects- react-router-dom
     let history = useHistory();
     const redirect=(path)=>{
@@ -14,8 +14,8 @@ const Lobby=()=>{
 
     return(
         <div>
-            <div className="user-background"></div>
-            <nav className="navbar navbar-expand-lg navbar-light bg-primary-custom fixed-top py-3" id="mainNav">
+            {/* <div className="user-background"></div> */}
+            <nav className="navbar navbar-expand-lg navbar-light bg-primary-custom fixed-top py-3" id="mainNav" style={{backgroundImage: "linear-gradient(to top, rgb(182, 255, 210,0.3), #f2e3bd88)",opacity:"0.7"}}>
             <div className="container">
                 <a className="navbar-brand  text-primary" href="/">E-Proctor</a>
                 <button className="navbar-toggler navbar-toggler-right text-primary" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span className="navbar-toggler-icon"></span></button>
@@ -35,10 +35,10 @@ const Lobby=()=>{
             <div className="row nav-padding container">
                 {/* left pane */}
                 <div className="col-md-4">
-                        <div className="card p-4 my-4 mx-3 custom-findQuiz-bg">
+                        <div className="card p-4 my-4 m-4 card-enhancer" >
                             <label className="text-secondary text-center">Check your Device Compatability.</label> 
                             <button 
-                                className="btn btn-lg btn-primary btn-block my-3" 
+                                className="btn btn-lg btn-outline-primary btn-block my-3 font-weight-bold" 
                                 onClick={()=>{
                                     redirect("/test")
                                 }}

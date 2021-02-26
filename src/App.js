@@ -49,7 +49,7 @@ function App() {
         <Route path="/sl">
           <StaffLogin/>
         </Route>
-        <Route path="/sd">
+        <Route path="/sd/:sid/:sname">
           <Dash/>
         </Route>
 

@@ -28,27 +28,26 @@ const DL =()=>{
 const submitHandlerLogin=(event)=>{
     event.preventDefault();
          // axios 
-         let formData = {Email: email,Password: password};    
-         // console.log(QueryString.stringify(formData));  
+         const json = {id: email,password: password};  
+         console.log(json)
          //header configuration for the CORS
          const config  = {
                  headers: {
-                     'Content-Type': 'application/x-www-form-urlencoded',
-                     'Access-Control-Allow-Origin':'*',  
+                    'Content-Type': 'application/json',
                  }}
-            axios.post('http://localhost:3001/loginUser', 
-            QueryString.stringify(formData),config)
+            axios.post('https://9gg060bijf.execute-api.us-east-1.amazonaws.com/production', 
+            JSON.stringify(json),config)
             .then(function (response) {
                 console.log(response.data);
-                setPopupContent(response.data);
+                console.log(response.data.status)
                 // redirect to the userdash
-                if(response.data.id){
-                    localStorage.setItem('userID', response.data.id);
-                    localStorage.setItem('userName', response.data.name);
-                    localStorage.setItem('userRollno', response.data.rollno);
-                    redirect("/ul/"+response.data.id+"/"+response.data.name);
+                if(response.data.status ==="verified"){
+                    localStorage.setItem('userID', response.data.user_Cred._id);
+                    localStorage.setItem('userName', response.data.user_Cred.name);
+                    localStorage.setItem('userRollno', response.data.user_Cred.rollno);
+                    redirect("/ul/"+response.data.user_Cred._id+"/"+response.data.user_Cred.name);
                 }else{
-                    setPopupContent(response.data)
+                    setPopupContent(response.data.status)
                     handleShow()
                 }
             })
@@ -87,10 +86,10 @@ const submitHandlerLogin=(event)=>{
                         <hr className="mb-3"/>
                         <label className="sr-only">User ID / Email</label>
                         <input 
-                            type="email" 
+                            type="text" 
                             id="inputEmail" 
                             className="form-control text-dark mb-3 input-transparent" 
-                            placeholder="User ID / Email" 
+                            placeholder="Candidate ID " 
                             value={email}
                             required 
                             autoFocus

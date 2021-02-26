@@ -1,13 +1,20 @@
 import React,{useState} from 'react'
 import './staffLogin.css';
 import Wallpaper from '../../assets/images/login-bg-123.jpg'
+import axios from 'axios'
 
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
+import { useHistory } from "react-router-dom";
 
 const StaffLogin=()=>{
+    let history = useHistory();
+    const redirect=(path)=>{
+        history.push(path)
+    }
 
     // states and function for the modal
+    const [popupContent,setPopupContent]=useState("")
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -17,7 +24,36 @@ const StaffLogin=()=>{
     const [pass, setpass] = useState("")
     const submitHandlerLogin=(event)=>{
         event.preventDefault();
-        //axois to the backend...
+         // axios 
+         const json = {email: emailid,password: pass};  
+         console.log(json)
+         //header configuration for the CORS
+         const config  = {
+                 headers: {
+                    'Content-Type': 'application/json',
+                 }}
+            axios.post('https://aehpbsq038.execute-api.us-east-1.amazonaws.com/production', 
+            JSON.stringify(json),config)
+            .then(function (response) { 
+                console.log(response.data);
+                // console.log(response.data.status)
+                // redirect to the userdash
+                if(response.data.status ==="verified"){
+                    localStorage.setItem('staffID', response.data.cred.staffID);
+                    localStorage.setItem('staffName', response.data.cred.name);
+                    localStorage.setItem('staffRollno', response.data.cred.rollno);
+                    redirect("/sd/"+response.data.cred.staffID+"/"+response.data.cred.name);
+                }else{
+                    setPopupContent(response.data.status)
+                    handleShow()
+                }
+            })
+            .catch(function (error) {
+                setPopupContent("Oh snap! Something went wrong, Try again.");
+                handleShow();
+                console.log("error")
+            });
+
     }
     return(
         <div>
@@ -71,6 +107,27 @@ const StaffLogin=()=>{
                 </div>
             </div>
             </div>
+
+            {/* popup */}
+            <Modal
+                show={show}
+                onHide={handleClose}
+                backdrop="static"
+                keyboard={false}
+                centered
+                >
+                <Modal.Header closeButton>
+                <Modal.Title>E-proctor</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    {popupContent}
+                </Modal.Body>
+                <Modal.Footer>
+                <Button variant="primary" onClick={handleClose}>
+                    Close
+                </Button>
+                </Modal.Footer>
+            </Modal>
         </div>
     )
 }

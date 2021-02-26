@@ -7,6 +7,10 @@
     height: 100vh;
     width:99vw;
 }
+.card-enhancer{
+    background-image: linear-gradient(to left bottom, rgb(182, 255, 210,0.2), #f2e3bd77);
+    border:1px solid #fda890;
+}
 .nav-padding{
     padding-top:5.5rem;
  }

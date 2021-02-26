@@ -33,7 +33,7 @@ const MastHeader=()=>{
                     <hr className="divider my-4" />
                 </div>
                 <div className="col-lg-8 align-self-baseline">
-                    <p className="text-white-50 font-weight-light mb-5">were Examinations done right.</p>
+                    <p className="text-white-50 font-weight-light mb-5">where Examinations done right.</p>
                     <button 
                         className="btn btn-outline-primary btn-xl loginbutton-l" 
                         onClick={()=>{
