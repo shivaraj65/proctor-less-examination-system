@@ -3,6 +3,7 @@ import './tester.css';
 import Webcam from "react-webcam";
 import axios from 'axios'
 
+
 const WebcamComponent = () => <Webcam />;
 
 const Tester=()=>{
@@ -34,17 +35,17 @@ const Tester=()=>{
     }
     return(
         <div className="text-center">
-        <div className="background-tester-custom"></div>
+        {/* <div className="background-tester-custom"></div> */}
             <div className="tester-custom">
                 <Webcam
-                    height={200}
-                    weigth={200}
+                    className={"webcam-element"}                    
                     audio={false}
                     ref={webcamRef}
                     screenshotFormat="image/jpeg"
                 />
+                <br/>
                 <button 
-                    className="tester-button btn btn-warning"
+                    className="btn btn-secondary mt-3"
                     onClick={capture}>TEST VIDEO RECOGNITION</button>
             </div>
         </div>

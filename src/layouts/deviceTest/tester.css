@@ -9,12 +9,9 @@
     background-size: contain;
 }
 .tester-custom{
-    margin:auto 50px auto 50px;
-    padding:50px 0;
-    height:95vh;
-    width:95vw;
+    padding-top:10vh;
 }
-.tester-button{
-    display: block;
-    margin: auto;
+.webcam-element{
+    width:30vw;
+    border-radius: 1rem;
 }
