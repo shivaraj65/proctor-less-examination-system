@@ -3,7 +3,6 @@ import './css.css';
 import Wallpaper from '../../assets/images/wallpaper-06.jpg';
 
 import axios from 'axios'
-import * as QueryString from "query-string"
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import { useHistory } from "react-router-dom";
@@ -42,9 +41,9 @@ const submitHandlerLogin=(event)=>{
                 console.log(response.data.status)
                 // redirect to the userdash
                 if(response.data.status ==="verified"){
-                    localStorage.setItem('userID', response.data.user_Cred._id);
-                    localStorage.setItem('userName', response.data.user_Cred.name);
-                    localStorage.setItem('userRollno', response.data.user_Cred.rollno);
+                    window.sessionStorage.setItem('userID', response.data.user_Cred._id);
+                    window.sessionStorage.setItem('userName', response.data.user_Cred.name);
+                    window.sessionStorage.setItem('userRollno', response.data.user_Cred.rollno);
                     redirect("/ul/"+response.data.user_Cred._id+"/"+response.data.user_Cred.name);
                 }else{
                     setPopupContent(response.data.status)

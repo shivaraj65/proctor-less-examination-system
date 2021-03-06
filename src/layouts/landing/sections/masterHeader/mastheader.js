@@ -17,20 +17,20 @@ const MastHeader=()=>{
                 <div className="col-lg-10 align-self-end">
                 <h1 className="text-uppercase text-white-100 font-weight-bold font-black-ops-one" style={{color: "#393e46",opacity: "0.8"}}>
                     <GlitchText
-                        text="HAWK-EYE"
+                        text="&lt;meriTTrack&gt;"
                         duration="4000ms"
                         keyframesNum={20}
                         limit={1}
                         colors={['#54e346', '#ff7b54', '#11698e']}
-                        position={[-1, 6]}
+                        position={[-2, 3]}
                         shadow={[-4, 3]}
                         backgroundColor=""
                         >
-                        HAWK-EYE
+                        &lt;meriTTrack&gt;
                     </GlitchText>
                 </h1>
                        
-                    <hr className="divider my-4" />
+                    <hr className="divider mt-4 mb-5 pb-4" />
                 </div>
                 <div className="col-lg-8 align-self-baseline">
                     <p className="text-white-50 font-weight-light mb-5">where Examinations done right.</p>
@@ -45,8 +45,8 @@ const MastHeader=()=>{
                         keyframesNum={10}
                         limit={1}
                         colors={['#54e346', '#ff7b54', '#11698e']}
-                        position={[-1, 1]}
-                        shadow={[-1, 1]}
+                        position={[-1, 0]}
+                        shadow={[0, 2]}
                         backgroundColor=""
                         >LOGIN
                     </GlitchText></button>

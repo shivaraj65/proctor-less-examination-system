@@ -39,9 +39,8 @@ const StaffLogin=()=>{
                 // console.log(response.data.status)
                 // redirect to the userdash
                 if(response.data.status ==="verified"){
-                    localStorage.setItem('staffID', response.data.cred.staffID);
-                    localStorage.setItem('staffName', response.data.cred.name);
-                    localStorage.setItem('staffRollno', response.data.cred.rollno);
+                    window.sessionStorage.setItem('staffID', response.data.cred.staffID);
+                    window.sessionStorage.setItem('staffName', response.data.cred.name);
                     redirect("/sd/"+response.data.cred.staffID+"/"+response.data.cred.name);
                 }else{
                     setPopupContent(response.data.status)

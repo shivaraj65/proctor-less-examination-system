@@ -1,9 +1,11 @@
 import React,{useState} from 'react'
 import Snav from './navbar/snavbar'
 import './dash.css'
-import Nodata from '../../assets/images/no_data.png'
+import Nodata from '../../assets/images/no_data_1.png'
 // staff modules
 import Create from './create/create'
+import Delete from './delete/delete'
+
 const Dash =()=>{
     const [rightPanelselector, setrightPanelselector] = useState(null);
 
@@ -53,6 +55,12 @@ const Dash =()=>{
                                         setrightPanelselector("publish")
                                     }}
                                 ><strong>Publish Result</strong></button>
+                                <button 
+                                    className="btn btn-block btn-outline-dark font1 my-2"
+                                    onClick={()=>{
+                                        setrightPanelselector("rtm")
+                                    }}
+                                ><strong>RT Monitoring</strong></button>
                             </div>                            
                         </div>
                         
@@ -61,6 +69,7 @@ const Dash =()=>{
                         <div className="card p-4 inner-scroll card-shadow">    
                             {rightPanelselector==null?<img classname="nodata" src={Nodata} alt="no data to display"/>:null}
                             {rightPanelselector==="create"?<Create/>:null}
+                            {rightPanelselector==="delete"?<Delete/>:null}
                         </div>
                     </div>
                 </div> 

@@ -14,6 +14,7 @@ import Register from './layouts/register/register'
 import Lobby from './layouts/lobby/lobby'
 import Tester from './layouts/deviceTest/tester'
 
+import RegisterationZone from './layouts/registerationZone/registerationZone'
 import Exam from './layouts/examZone/exam'
 
 //imports for the staff modules
@@ -41,6 +42,9 @@ function App() {
         </Route>
         <Route path="/test">
           <Tester/>
+        </Route>
+        <Route path="/registerationZone/:uid/:uname">
+          <RegisterationZone/>
         </Route>
         <Route path="/exam">
           <Exam/>
