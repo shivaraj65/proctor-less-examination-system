@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/proctor-less-examination-system/static/css/main.7992c83c.chunk.css",
-    "main.js": "/proctor-less-examination-system/static/js/main.c74df99d.chunk.js",
-    "main.js.map": "/proctor-less-examination-system/static/js/main.c74df99d.chunk.js.map",
+    "main.css": "/proctor-less-examination-system/static/css/main.23c65bb8.chunk.css",
+    "main.js": "/proctor-less-examination-system/static/js/main.c3e28187.chunk.js",
+    "main.js.map": "/proctor-less-examination-system/static/js/main.c3e28187.chunk.js.map",
     "runtime-main.js": "/proctor-less-examination-system/static/js/runtime-main.b9dce7dd.js",
     "runtime-main.js.map": "/proctor-less-examination-system/static/js/runtime-main.b9dce7dd.js.map",
-    "static/js/2.2b77f597.chunk.js": "/proctor-less-examination-system/static/js/2.2b77f597.chunk.js",
-    "static/js/2.2b77f597.chunk.js.map": "/proctor-less-examination-system/static/js/2.2b77f597.chunk.js.map",
+    "static/js/2.2870117d.chunk.js": "/proctor-less-examination-system/static/js/2.2870117d.chunk.js",
+    "static/js/2.2870117d.chunk.js.map": "/proctor-less-examination-system/static/js/2.2870117d.chunk.js.map",
     "static/js/3.9693b90d.chunk.js": "/proctor-less-examination-system/static/js/3.9693b90d.chunk.js",
     "static/js/3.9693b90d.chunk.js.map": "/proctor-less-examination-system/static/js/3.9693b90d.chunk.js.map",
     "index.html": "/proctor-less-examination-system/index.html",
-    "static/css/main.7992c83c.chunk.css.map": "/proctor-less-examination-system/static/css/main.7992c83c.chunk.css.map",
-    "static/js/2.2b77f597.chunk.js.LICENSE.txt": "/proctor-less-examination-system/static/js/2.2b77f597.chunk.js.LICENSE.txt",
+    "static/css/main.23c65bb8.chunk.css.map": "/proctor-less-examination-system/static/css/main.23c65bb8.chunk.css.map",
+    "static/js/2.2870117d.chunk.js.LICENSE.txt": "/proctor-less-examination-system/static/js/2.2870117d.chunk.js.LICENSE.txt",
     "static/media/App.css": "/proctor-less-examination-system/static/media/bg-mast.c0467377.jpg",
     "static/media/login-bg-123.4f8491a1.jpg": "/proctor-less-examination-system/static/media/login-bg-123.4f8491a1.jpg",
     "static/media/no_data_1.7b4fabb0.png": "/proctor-less-examination-system/static/media/no_data_1.7b4fabb0.png",
@@ -19,8 +19,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.b9dce7dd.js",
-    "static/js/2.2b77f597.chunk.js",
-    "static/css/main.7992c83c.chunk.css",
-    "static/js/main.c74df99d.chunk.js"
+    "static/js/2.2870117d.chunk.js",
+    "static/css/main.23c65bb8.chunk.css",
+    "static/js/main.c3e28187.chunk.js"
   ]
 }
