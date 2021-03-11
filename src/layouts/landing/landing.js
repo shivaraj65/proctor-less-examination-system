@@ -7,6 +7,8 @@ import About from './sections/aboutSection/about'
 import Service from './sections/servicess/service'
 import Creator from './sections/creator/creator'
 import Contact from './sections/contact/contact'
+import Footer from './sections/footer/footer'
+
 const Landing =()=>{
     return(
         <div>
@@ -15,6 +17,7 @@ const Landing =()=>{
             <Service/>
             <Creator/>
             {/* <Contact/> */}
+            <Footer/>
         </div>
     )
 }

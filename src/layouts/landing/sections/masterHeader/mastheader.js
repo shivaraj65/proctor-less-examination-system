@@ -35,7 +35,7 @@ const MastHeader=()=>{
                 <div className="col-lg-8 align-self-baseline">
                     <p className="text-white-50 font-weight-light mb-5">where Examinations done right.</p>
                     <button 
-                        className="btn btn-outline-primary btn-xl loginbutton-l" 
+                        className="btn btn-outline-light btn-xl loginbutton" 
                         onClick={()=>{
                             redirect("/login")
                         }}
@@ -44,8 +44,8 @@ const MastHeader=()=>{
                         duration="1000ms"
                         keyframesNum={10}
                         limit={1}
-                        colors={['#54e346', '#ff7b54', '#11698e']}
-                        position={[-1, 0]}
+                        colors={['#54e346', '#54e346', '#54e346']}
+                        position={[-2, 0]}
                         shadow={[0, 2]}
                         backgroundColor=""
                         >LOGIN

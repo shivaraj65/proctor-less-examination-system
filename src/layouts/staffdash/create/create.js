@@ -322,7 +322,7 @@ const Create=()=>{
                         centered
                     >
                     <Modal.Header closeButton>
-                        <Modal.Title>HAWKEYE</Modal.Title>
+                        <Modal.Title>&lt;meriTTrack&gt;</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         Once the exam is published, it will Automatically notify on the students Dashboard.

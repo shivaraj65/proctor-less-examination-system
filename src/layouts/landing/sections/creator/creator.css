@@ -9,6 +9,9 @@
 .top-content-creator-section{
     z-index:5;
 }
+.bg-black{
+    background-color: #000;
+}
 @media(max-width:768px){
     .background{
         margin-top:25vh;

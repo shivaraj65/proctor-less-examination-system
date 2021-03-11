@@ -89,8 +89,8 @@ const Register=()=>{
     }
 
     return(
-        <div id="register" className="">
-            <div className="form-signin card shadow my-4">
+        <div className="register">
+            <div className="form-signin card shadow m-auto my-4 p-4">
                 <form onSubmit={submitHandlerRegister}>
                     <div className="text-center ">
                         <h3 className="text-warning font-weight-bold register-heading">Registration Form</h3>

@@ -61,9 +61,10 @@ const StaffLogin=()=>{
                 <div className="col-sm-6 login-section-wrapper">
                 <div className="brand-wrapper">
                     {/* <img src="" alt="logo" className="logo"/> */}
+                    <h6 className="text-light">&lt;meriTTrack&gt;</h6>
                     <h5 className="text-warning font-weight-bold">Staff Login</h5>
                 </div>
-                <div className="login-wrapper my-auto">
+                <div className="login-wrapper my-auto py-1">
                     <h1 className="login-title">Log in</h1>
                     <form onSubmit={submitHandlerLogin}>
                     <div className="form-group">
@@ -116,7 +117,7 @@ const StaffLogin=()=>{
                 centered
                 >
                 <Modal.Header closeButton>
-                <Modal.Title>E-proctor</Modal.Title>
+                <Modal.Title>&lt;meriTTrack&gt;</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     {popupContent}

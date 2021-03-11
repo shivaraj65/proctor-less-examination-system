@@ -1,9 +1,11 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Knewave&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=PT+Serif:ital@1&display=swap');
         .btn{
             padding : 0.5rem 0.7rem;
           }
          .font-black-ops-one{
-          font-family: 'Knewave', cursive;
+          /* font-family: 'Knewave', cursive; */
+          font-family: 'PT Serif', serif;
           letter-spacing: 0.2em;
           /* font-size: 4rem; */
           /* color: #ff9f31; */
@@ -19,14 +21,16 @@
               transition: transform 80ms ease-in;
           }
           .loginbutton{
-              /* min-width: 150px; */
+              min-width: 200px;
               margin: 10px 15px;
-              padding: 0.3rem 0.7rem;
-              letter-spacing: 1px;
+              padding: 0.5rem 0.7rem;
+              box-shadow: 0 0 0 0.2rem rgba(245, 238, 236, 0.5);
+              font-size: 1.4rem;
+              letter-spacing: 3px;
               font-weight: bold;
               text-transform: uppercase;
-              transition: transform 80ms ease-in;
-              border-radius: 20px;
+              /* transition: transform 80ms ease-in; */
+              /* border-radius: 20px; */
           }
           button:active {
             transform: scale(0.80);

@@ -62,7 +62,7 @@ const submitHandlerLogin=(event)=>{
             <div className="background1" style={{backgroundImage:"url("+Wallpaper+")"}}></div>
             <nav className="navbar navbar-expand-lg navbar-light bg-primary-custo fixed-top py-3" id="mainNav" style={{backgroundImage: "linear-gradient(to top, rgb(182, 255, 210,0.3), #f2e3bd88)",opacity:"0.7"}}>
                 <div className="container">
-                    <a className="navbar-brand  text-primary" href="/">E-Proctor</a>
+                    <a className="navbar-brand  text-primary" href="/">&lt;meriTTrack&gt;</a>
                     <button className="navbar-toggler navbar-toggler-right text-primary" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span className="navbar-toggler-icon"></span></button>
                     <div className="collapse navbar-collapse" id="navbarResponsive">
                         <ul className="navbar-nav ml-auto my-2 my-lg-0">
@@ -126,7 +126,7 @@ const submitHandlerLogin=(event)=>{
                 centered
                 >
                 <Modal.Header closeButton>
-                <Modal.Title>E-proctor</Modal.Title>
+                <Modal.Title>&lt;meriTTrack&gt;</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     {popupContent}

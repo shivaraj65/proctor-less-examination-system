@@ -76,7 +76,7 @@ const Delete =()=>{
                     centered
                     >
                     <Modal.Header closeButton>
-                    <Modal.Title>HAWKEYE</Modal.Title>
+                    <Modal.Title>&lt;meriTTrack&gt;</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         Click, Confirm delete this EXAM...

@@ -1,4 +1,4 @@
-#register {
+.register {
     display: -ms-flexbox;
     display: flex;
     -ms-flex-align: center;
@@ -14,4 +14,3 @@
   .register-heading{
     padding-bottom: 30px;
   }
-    
