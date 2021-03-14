@@ -1,26 +1,27 @@
 {
   "files": {
-    "main.css": "/proctor-less-examination-system/static/css/main.5f79a766.chunk.css",
-    "main.js": "/proctor-less-examination-system/static/js/main.d0e12bc1.chunk.js",
-    "main.js.map": "/proctor-less-examination-system/static/js/main.d0e12bc1.chunk.js.map",
-    "runtime-main.js": "/proctor-less-examination-system/static/js/runtime-main.cb88d864.js",
-    "runtime-main.js.map": "/proctor-less-examination-system/static/js/runtime-main.cb88d864.js.map",
-    "static/js/2.80065a84.chunk.js": "/proctor-less-examination-system/static/js/2.80065a84.chunk.js",
-    "static/js/2.80065a84.chunk.js.map": "/proctor-less-examination-system/static/js/2.80065a84.chunk.js.map",
-    "static/js/3.77c9b43c.chunk.js": "/proctor-less-examination-system/static/js/3.77c9b43c.chunk.js",
-    "static/js/3.77c9b43c.chunk.js.map": "/proctor-less-examination-system/static/js/3.77c9b43c.chunk.js.map",
+    "main.css": "/proctor-less-examination-system/static/css/main.f448b742.chunk.css",
+    "main.js": "/proctor-less-examination-system/static/js/main.3c779ad0.chunk.js",
+    "main.js.map": "/proctor-less-examination-system/static/js/main.3c779ad0.chunk.js.map",
+    "runtime-main.js": "/proctor-less-examination-system/static/js/runtime-main.ecb06095.js",
+    "runtime-main.js.map": "/proctor-less-examination-system/static/js/runtime-main.ecb06095.js.map",
+    "static/js/2.d60f9919.chunk.js": "/proctor-less-examination-system/static/js/2.d60f9919.chunk.js",
+    "static/js/2.d60f9919.chunk.js.map": "/proctor-less-examination-system/static/js/2.d60f9919.chunk.js.map",
+    "static/js/3.d4231a74.chunk.js": "/proctor-less-examination-system/static/js/3.d4231a74.chunk.js",
+    "static/js/3.d4231a74.chunk.js.map": "/proctor-less-examination-system/static/js/3.d4231a74.chunk.js.map",
     "index.html": "/proctor-less-examination-system/index.html",
-    "static/css/main.5f79a766.chunk.css.map": "/proctor-less-examination-system/static/css/main.5f79a766.chunk.css.map",
-    "static/js/2.80065a84.chunk.js.LICENSE.txt": "/proctor-less-examination-system/static/js/2.80065a84.chunk.js.LICENSE.txt",
+    "static/css/main.f448b742.chunk.css.map": "/proctor-less-examination-system/static/css/main.f448b742.chunk.css.map",
+    "static/js/2.d60f9919.chunk.js.LICENSE.txt": "/proctor-less-examination-system/static/js/2.d60f9919.chunk.js.LICENSE.txt",
     "static/media/App.css": "/proctor-less-examination-system/static/media/bg-mast.c0467377.jpg",
     "static/media/login-bg-123.4f8491a1.jpg": "/proctor-less-examination-system/static/media/login-bg-123.4f8491a1.jpg",
     "static/media/no_data_1.7b4fabb0.png": "/proctor-less-examination-system/static/media/no_data_1.7b4fabb0.png",
+    "static/media/wallpaper-04.5b07d119.jpg": "/proctor-less-examination-system/static/media/wallpaper-04.5b07d119.jpg",
     "static/media/wallpaper-06.0111e02b.jpg": "/proctor-less-examination-system/static/media/wallpaper-06.0111e02b.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.cb88d864.js",
-    "static/js/2.80065a84.chunk.js",
-    "static/css/main.5f79a766.chunk.css",
-    "static/js/main.d0e12bc1.chunk.js"
+    "static/js/runtime-main.ecb06095.js",
+    "static/js/2.d60f9919.chunk.js",
+    "static/css/main.f448b742.chunk.css",
+    "static/js/main.3c779ad0.chunk.js"
   ]
 }
