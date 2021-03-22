@@ -24,7 +24,7 @@ const Exam=()=>{
 
     useEffect(()=>{
          // axios 
-         const json = {id:"it002"};  
+         const json = {id:window.sessionStorage.getItem("examID")};  
          //header configuration for the CORS
          const config  = {
                  headers: {

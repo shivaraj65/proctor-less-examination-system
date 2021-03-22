@@ -137,8 +137,12 @@ const Lobby=()=>{
                                                     if(entry.date===systemdate){
                                                         if(systemHrs===slicehrs && systemMins>=slicemins && systemMins <=(slicemins+10)){
                                                             alert("date and time ok")
+                                                            //store the examid in session for the next window
+                                                            window.sessionStorage.setItem('examID',entry.subjectID);
+                                                            //redirect to the examzone
+                                                            redirect("/exam")
                                                         }else{
-                                                            alert("this is not he right TIME to write the exam!")
+                                                            alert("this is not he right TIME to write the exam!")                                                       
                                                         }
                                                     }else{
                                                         alert("This is not the right DAY to write the exam!")
@@ -161,20 +165,11 @@ const Lobby=()=>{
                         </div>:null}
                         
                     <button 
-                        className=""
+                        className="btn btn-info"
                         onClick={()=>{
                             redirect("/exam")
                         }   
                     }>tester for the invigilation setup</button>
-                    <button 
-                        className="mt-3 btn btn-dark"
-                        onClick={()=>{
-                            
-                            var crnttime=dateToday.getHours()+":"+dateToday.getMinutes()
-                            
-                            
-                        }   
-                    }>date test</button>
                 </div>
             </div>
         </div>
