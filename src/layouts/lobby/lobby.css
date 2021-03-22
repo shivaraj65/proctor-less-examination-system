@@ -34,7 +34,9 @@ background-size: cover;
     height:100vh;
     width:100vw;
 }
-
+.table-scroll-x{
+    overflow-x: scroll;
+}
 @media only screen and (max-width: 600px) {
    .card-flex-90vw .card{
     position:relative;

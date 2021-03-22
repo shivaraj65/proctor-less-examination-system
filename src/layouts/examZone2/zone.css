@@ -1,0 +1,6 @@
+.custom-blurred-box{
+    top:50px;
+    min-width:65%;
+    height:80%;
+    overflow-y: scroll;
+}

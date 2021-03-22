@@ -38,7 +38,7 @@ const RegisterationZone=()=>{
         .then(function (response) {
            if(response.data.message.Count!==0){
                 setedata(response.data.message.Items)
-                console.log(response.data.message.Items)
+                // console.log(response.data.message.Items)
                 setselectedData([]);
                 let temp=[];
                 for(let i=0;i<response.data.message.Count;i++){
@@ -58,7 +58,7 @@ const RegisterationZone=()=>{
         let tempdata=[];
         for(var i=0;i<checkbox.length;i++){
             if(checkbox[i]===true){
-                    tempdata.push({subjectID:edata[i].subjectID,subjectName:edata[i].subjectName})
+                    tempdata.push({subjectID:edata[i].examID,subjectName:edata[i].examName,date:edata[i].DOE,time:edata[i].time})
             }
         }
         setselectedData(tempdata)
@@ -73,7 +73,7 @@ const RegisterationZone=()=>{
         axios.post('https://e0a5x5pqle.execute-api.us-east-1.amazonaws.com/production', 
         JSON.stringify(json),config)
         .then(function (response) {
-            
+            console.log(response.data.message)
             if(response.data.status==="Registration successfully done!... redirecting to dashboard."){
                 setPopupContent(response.data.status)
                 handleShow()
@@ -170,7 +170,7 @@ const RegisterationZone=()=>{
                                                     className="form-check-input mt-2 ml-1 d-block"
                                                     style={{"width": "20px", "height": "20px"}} 
                                                     type="checkbox" 
-                                                    value={entry.subjectID}
+                                                    value={entry.examID}
                                                     onChange={(e)=>{
                                                         let temp=checkbox;
                                                         temp[index]=!checkbox[index]
@@ -180,17 +180,22 @@ const RegisterationZone=()=>{
                                                     <br/>
                                             </div>
                                             <div className="col-sm-3 pt-2">
-                                                <p>{entry.subjectID}</p>
+                                                <p>{entry.examID}</p>
                                             </div>
                                             <div className="col-sm-8 pt-2 text-secondary">
-                                                <p>{entry.subjectName}</p>
+                                                <p>{entry.examName}</p>
                                             </div>
                                             
                                             <hr/>
                                         </div>
                                     )
                                 })}
-                                
+                                {edata===null?
+                                    <div className="m-4">
+                                        <div className="spinner-border text-warning" role="status">
+                                            <span className="sr-only">Loading...</span>
+                                        </div>
+                                    </div>:null}
                            
                             <button 
                                 type="button" 

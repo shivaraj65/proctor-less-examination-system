@@ -16,7 +16,7 @@ import Tester from './layouts/deviceTest/tester'
 
 import RegisterationZone from './layouts/registerationZone/registerationZone'
 import Exam from './layouts/examZone/exam'
-
+import Zone from './layouts/examZone2/zone'
 //imports for the staff modules
 
 import Dash from './layouts/staffdash/dash'
@@ -56,7 +56,9 @@ function App() {
         <Route path="/sd/:sid/:sname">
           <Dash/>
         </Route>
-
+        <Route path="/zone/:eid">
+          <Zone/>
+        </Route>
       </Switch>
     </HashRouter>
   );

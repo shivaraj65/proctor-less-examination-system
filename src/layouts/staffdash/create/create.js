@@ -16,6 +16,8 @@ const Create=()=>{
     const [noOfQuestions, setnoOfQuestions] = useState("")
     const [date, setdate] = useState("")
     const [time, settime] = useState("")
+    const [dept, setdept] = useState("")
+    const [duration, setduration] = useState("")
     
     //page 2
     const [questions, setquestions] = useState(null)
@@ -90,6 +92,38 @@ const Create=()=>{
                                     value={name}
                                     onChange={(e)=>{setname(e.target.value)}}
                                     />
+                            </div>
+                            <div className="row">
+                                <div className="col">
+                                    <div className="form-group">
+                                        <label>Department</label>
+                                        <select 
+                                                        className="form-control text-success"
+                                                        onChange={(e)=>{
+                                                            setdept(e.target.value)
+                                                        }}
+                                                        value={dept}
+                                                        >        
+                                                        <option></option>                                                
+                                                        <option>cse</option>
+                                                        <option>ece</option>
+                                                        <option>eee</option>
+                                                        <option>mech</option>
+                                                    </select>
+                                    </div>
+                                </div>
+                                <div className="col">
+                                    <div className="form-group">
+                                        <label>Duration</label>
+                                        <input 
+                                            type="number" 
+                                            className="form-control" 
+                                            placeholder="enter in minutes"
+                                            value={duration}
+                                            onChange={(e)=>{setduration(e.target.value)}}
+                                            />
+                                    </div>
+                                </div>
                             </div>
                             <div className="form-group">
                                 <label>No Of Questions</label>

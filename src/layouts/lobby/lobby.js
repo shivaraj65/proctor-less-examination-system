@@ -5,6 +5,7 @@ import axios from 'axios'
 
 const Lobby=()=>{
     const [examData,setexamData]=useState(null)
+    const [dateToday, setdateToday] = useState(null)
 
     //for the redirects- react-router-dom
     let history = useHistory();
@@ -12,6 +13,9 @@ const Lobby=()=>{
         history.push(path)
     }
     useEffect(()=>{
+        //first fetcht the data for the registered exams
+        //then fetch the data for the
+
         // axios 
         const json = {id:window.sessionStorage.getItem("userID")};  
         //header configuration for the CORS
@@ -34,7 +38,22 @@ const Lobby=()=>{
             alert("something went wrong. Please refresh the page.")
             console.log("error")
         });
+        var today = new Date();
+        setdateToday(today)
+        
     },[])
+
+    //current time updater
+    useEffect(()=>{
+        setTimeout(() =>  {
+            setdateToday(new Date())
+        }, 1000*60);
+      },[dateToday])
+
+    //if already attended block the next entry
+    function checkExamForAttending(){
+
+    }
 
     return(
         <div>
@@ -80,45 +99,82 @@ const Lobby=()=>{
                 </div>
 
                 {/* right pane */}
-                <div className="col-md-8 pt-2 card mt-4">
-                            <div className="row mt-1 mx-2">
-                                <div className="col-sm-3 pt-2 ml-3">
-                                    <p>subject code</p>
-                                </div>
-                                <div className="col-sm-8 pt-2 text-secondary">
-                                    <p>subject name</p>
-                                </div>
-                                
-                                <hr/>
+                <div className="col-md-8 py-4 card my-4 table-scroll-x">
+                    <h5 className="text-secondary text-center mb-3">Registered Exams</h5>
+                    <table className="table table-striped table-light table table-borderless table-hover ">
+                        <thead>
+                            <tr className="text-dark">
+                                <th scope="col">Subject Code</th>
+                                <th scope="col">Subject Name</th>
+                                <th scope="col">Date of Exam</th>
+                                <th scope="col">Time</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {examData && examData.map((entry,index)=>{
+                                return(
+                                    <tr key={index}>
+                                        <th scope="row" className="text-secondary">{entry.subjectID}</th>
+                                        <td className="text-secondary">{entry.subjectName}</td>
+                                        <td className="text-info">{entry.date}</td>
+                                        <td className="text-info">{entry.time}</td>
+                                        <td>
+                                            <button 
+                                                className="btn btn-sm btn-secondary" 
+                                                style={{padding:"0"}}
+                                                onClick={()=>{ 
+                                                    //data form the entry
+                                                    var slicehrs=parseInt(entry.time.slice(0,2));
+                                                    var slicemins=parseInt(entry.time.slice(3,));
+
+                                                    //data from the current time
+                                                    const systemHrs=parseInt(dateToday.getHours())
+                                                    const systemMins=parseInt(dateToday.getMinutes())
+                                                    //system date
+                                                    const systemdate =dateToday.getFullYear()+'-'+String(dateToday.getMonth()+1).padStart(2,'0')+'-'+String(dateToday.getDate()).padStart(2,'0');
+                                                    //check date for exam
+                                                    if(entry.date===systemdate){
+                                                        if(systemHrs===slicehrs && systemMins>=slicemins && systemMins <=(slicemins+10)){
+                                                            alert("date and time ok")
+                                                        }else{
+                                                            alert("this is not he right TIME to write the exam!")
+                                                        }
+                                                    }else{
+                                                        alert("This is not the right DAY to write the exam!")
+                                                    }
+                                                    }}
+                                                >
+                                                <img src="https://img.icons8.com/cute-clipart/64/000000/enter-2.png" alt="" style={{maxHeight:"32px"}}/>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                )
+                            })}
+                        </tbody>
+                    </table>
+                    {examData===null?
+                        <div className="m-4">
+                            <div className="spinner-border text-warning" role="status">
+                                <span className="sr-only">Loading...</span>
                             </div>
-                    {examData && examData.map((entry,index)=>{
-                        return(
-                            <div className="row mt-1 text-center hovered mx-2 py-2" key={index}>
-                                <div className="col-sm-2 pt-2">
-                                    <p>{entry.subjectID}</p>
-                                </div>
-                                <div className="col-sm-8 pt-2 text-secondary">
-                                    <p>{entry.subjectName}</p>
-                                </div>
-                                <div className="col-sm-2 pt-2 text-secondary">
-                                    <button className="btn btn-success">start</button>
-                                </div>
-                                <hr/>
-                            </div>
-                        )
-                    })}
-                    
-
-
-
-
-
+                        </div>:null}
+                        
                     <button 
                         className=""
                         onClick={()=>{
                             redirect("/exam")
                         }   
                     }>tester for the invigilation setup</button>
+                    <button 
+                        className="mt-3 btn btn-dark"
+                        onClick={()=>{
+                            
+                            var crnttime=dateToday.getHours()+":"+dateToday.getMinutes()
+                            
+                            
+                        }   
+                    }>date test</button>
                 </div>
             </div>
         </div>
