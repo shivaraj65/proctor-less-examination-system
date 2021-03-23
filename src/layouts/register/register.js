@@ -10,7 +10,7 @@ const Register=()=>{
     const [registerno,setregisterno]=useState("");
     const [imagedata,setimagedata]=useState("");
     const [image64,setimage64]=useState("");
-    const [dept,setdept]=useState("CSE");
+    const [dept,setdept]=useState("");
     const [password,setpassword]=useState("");
     const [passwordTest, setpasswordTest] = useState(null)
 
@@ -59,7 +59,6 @@ const Register=()=>{
             
         }else{
             // axios 
-            
             const json ={image:image64,Email: email,Name:name,Rollno:rollno,Regno:registerno,Dept:dept,Password: password};    
             // console.log(QueryString.stringify(formData));  
             //header configuration for the CORS
@@ -68,20 +67,16 @@ const Register=()=>{
                         'Content-Type': 'application/json',
                     }
             }
-            console.log(json)
-            axios.post('https://o53u9m96zl.execute-api.us-east-1.amazonaws.com/production', 
+            // console.log(json)
+            axios.post('https://4tajhwi4ga.execute-api.us-east-1.amazonaws.com/production', 
             JSON.stringify(json),config)
                 .then(function (response) {
-                    console.log(response.data);
-                    // setPopupContent(response.data);
-                    // redirect to the userdash
                     alert(response.data);
+                    alert("A mail has been sent to your emailID. please verify it to continue")
                 })
                 .catch(function (error) {
-                    // setPopupContent("Oh snap! Something went wrong, Try again.");
-                    // handleShow();
-                    console.log("error")
-                    // alert("error");
+                    // console.log("error")
+                    alert("error");
                 });
 
         }//end of else
@@ -122,15 +117,19 @@ const Register=()=>{
                     </div>
                     <div className="form-group">
                         <label className="text-secondary font-italic">Department</label>
-                        <input 
-                            type="text" 
-                            value={dept}
-                            readOnly
+                        <select 
                             className="form-control text-primary font-weight-bolder disabled muted"
                             onChange={(e)=>{
-                                
-                            }} 
-                            required/>
+                                setdept(e.target.value)
+                            }}
+                            value={dept}
+                            >          
+                            <option></option>                                           
+                            <option>CSE</option>
+                            <option>ECE</option>
+                            <option>EEE</option>
+                            <option>MECH</option>
+                        </select>
                     </div>
                     <div className="form-group">
                         <label className="text-secondary font-italic">Roll No</label>

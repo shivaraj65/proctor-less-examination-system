@@ -50,6 +50,14 @@ const MastHeader=()=>{
                         backgroundColor=""
                         >LOGIN
                     </GlitchText></button>
+                     {/* dummy btn for testing */}
+                     <button 
+                        className="btn btn-info btn-xl loginbutton mt-2 px-3" 
+                        onClick={()=>{
+                            redirect("/register")
+                        }}
+                        >testing signup
+                    </button>
                 </div>
             </div>
         </div>
