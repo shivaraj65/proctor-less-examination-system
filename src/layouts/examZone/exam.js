@@ -3,10 +3,17 @@ import axios from 'axios'
 import './exam.css';
 import Clock from './clock/clock'
 import Webcam from "react-webcam";
+import { useHistory } from "react-router-dom";
  
 const WebcamComponent = () => <Webcam />;
 
 const Exam=()=>{
+     //for the redirects- react-router-dom
+     let history = useHistory();
+     const redirect=(path)=>{
+         history.push(path)
+     }
+
     //states for the data from sever
     const [questiondata,setquestiondata]=useState(null)
 
@@ -21,12 +28,14 @@ const Exam=()=>{
 
     //states for the answered questions
     const [answeredQuestionsData, setansweredQuestionsData] = useState(null)
-
+    const [scoreobtained,setscoreobtained]=useState(0)
     //states for the monitoring purpose
     const [cred,setcred]=useState(100)
-    const [imagedata,setimagedata]=useState(null)
+    const [imagedata,setimagedata]=useState([])
+    // var imagedata=[];
     const [fekogFlag,setrekogFlag]=useState(false)
     const [facetimer,setfacetimer]=useState(0)
+
     useEffect(()=>{
          // axios 
          const json = {id:window.sessionStorage.getItem("examID")};  
@@ -46,7 +55,6 @@ const Exam=()=>{
                settimer(response.data.payload.Item.duration*60)
                setTimerActive(true)
                setrekogFlag(true)
-               setimagedata([])
                let tempdata=[]
                for(var i=0;i<response.data.payload.Item.questions.length;i++){
                    tempdata.push(-1)
@@ -77,14 +85,15 @@ const Exam=()=>{
     const capture = React.useCallback(() => {
       const imageSrc = webcamRef.current.getScreenshot({width: 500, height: 300});
       setImgSrc(imageSrc);
-      faceRecok(imageSrc);
+    //hided the face rekog for sometime
+    //   faceRecok(imageSrc);
     }, [webcamRef, setImgSrc]);
 
     //automated counter for the rekog transmitter
     useEffect(()=>{
         if(fekogFlag){
             timer >= 10 && setTimeout(() => {
-                alert("rekog trigger"); 
+                // alert("rekog trigger"); 
                 //call the imagecapture--it will  call the facerecok....
                 capture()
                 setfacetimer(facetimer+1)
@@ -92,10 +101,9 @@ const Exam=()=>{
         }  
       },[facetimer,fekogFlag])
 
-
-    function faceRecok(imaged){  
+    useEffect(() => {
         //axios request
-        const json = JSON.stringify({ image: imaged,rollno:window.sessionStorage.getItem("userRollno")});
+        const json = JSON.stringify({ image: imgSrc,rollno:window.sessionStorage.getItem("userRollno")});
         const config  = {
             headers: {
                 'Content-Type': 'application/json',
@@ -103,17 +111,38 @@ const Exam=()=>{
             axios.post(' https://clx74mh9ue.execute-api.us-east-1.amazonaws.com/production', 
             json,config)
             .then(function (response) {
-                
-                
+                //add the image url to the array
+                addurl(response.data.url)
+               
+                //assess the confidence score
+                if(response.data.rekog.FaceMatches.length===1 && response.data.rekog.UnmatchedFaces.length===0){
+                    if(response.data.rekog.FaceMatches[0].Similarity<99.6){
+                        //problem---reduce cred
+                        console.log("low similarity")
+                        setcred(cred-5)
+                        if(cred-5<=80){
+                            violationsubmit("lowCred")
+                        }
+                        // alert("reducing cred")
+                    }
+                }else if(response.data.rekog.UnmatchedFaces.length>=1 ||response.data.rekog.FaceMatches.length===0 ||response.data.rekog.FaceMatches.length>1){
+                    violationsubmit("malP")
+                    // alert("malP")
+                }
             })
             .catch(function (error) {             
                 console.log("error")
             });
-    
-    }
+       
+    }, [imgSrc])
+    // function faceRecok(imagedataa){  
+        
+    // }
 
-
-
+    function addurl(url){
+                setimagedata([...imagedata,{"url":url}])
+                console.log(imagedata)
+    }   
 
 
 
@@ -131,44 +160,152 @@ const Exam=()=>{
 
     //function for the submit feature from submit button
     const submitbuttonSubmit=()=>{
-        //url for submit
-        // https://7pusl8hexl.execute-api.us-east-1.amazonaws.com/production
+        //windingup the facerekog session
+        setrekogFlag(false)
+
+        //calculate the score
+        let scoreinc=0;
+        for(var j=0;j<questions.length;j++){
+            if(questions[j].ans===answeredQuestionsData[j]){
+                scoreinc=scoreinc+1
+            }
+        }
+        setscoreobtained(scoreinc)
+        console.log("score: "+scoreinc);
         // axios 
         const data={
             "id": window.sessionStorage.getItem("userID")+""+window.sessionStorage.getItem("examID"),
             "cred": cred,
-            "score": 100,
-            "sid": "7220",
-            "ans": ["a", "b"],
-            "sType": "autosubmit",
+            "score": scoreinc,
+            "sid": window.sessionStorage.getItem("userID"),
+            "ans": answeredQuestionsData,
+            "sType": "candidateSubmit",
             "malprac": false,
-            "imageData": ["lkewfwer", "ljjegfiuwef", "kjewgfweufgiuwe"]
+            "imageData": imagedata
         }
-        const json = {id:window.sessionStorage.getItem("userID")};  
+        // const json = {id:window.sessionStorage.getItem("userID")};  
         //header configuration for the CORS
         const config  = {
                 headers: {
                    'Content-Type': 'application/json',
                 }}
                 axios.post('https://7pusl8hexl.execute-api.us-east-1.amazonaws.com/production', 
-                JSON.stringify(json),config)
+                JSON.stringify(data),config)
                 .then(function (response) {
-                   
+                   if(response.data.status==="success"){
+                       alert("wait for few seconds... Data is being sent to server.")
+                       setTimeout(()=>{
+                        redirect("/ul/"+window.sessionStorage.getItem("userID")+"/"+window.sessionStorage.getItem("userName"))
+                       },10000)
+                       
+                   }else{
+                       alert("network error.. contact admin for further details")
+                        //redirect("/")
+                   }
                 })
                 .catch(function (error) {
-                    
                     console.log("error")
                 });
     }
 
     //function for the auto submit feature
     function autosubmit(){
-        alert("auto submitting...")
+        //windingup the facerekog session
+        setrekogFlag(false)
+
+        //calculate the score
+        let scoreinc=0;
+        for(var j=0;j<questions.length;j++){
+            if(questions[j].ans===answeredQuestionsData[j]){
+                scoreinc=scoreinc+1
+            }
+        }
+        setscoreobtained(scoreinc)
+        console.log("score: "+scoreinc);
+        // axios 
+        const data={
+            "id": window.sessionStorage.getItem("userID")+""+window.sessionStorage.getItem("examID"),
+            "cred": cred,
+            "score": scoreinc,
+            "sid": window.sessionStorage.getItem("userID"),
+            "ans": answeredQuestionsData,
+            "sType": "autoSubmit",
+            "malprac": false,
+            "imageData": imagedata
+        }
+        // const json = {id:window.sessionStorage.getItem("userID")};  
+        //header configuration for the CORS
+        const config  = {
+                headers: {
+                   'Content-Type': 'application/json',
+                }}
+                axios.post('https://7pusl8hexl.execute-api.us-east-1.amazonaws.com/production', 
+                JSON.stringify(data),config)
+                .then(function (response) {
+                   if(response.data.status==="success"){
+                       alert("wait for few seconds... Data is being sent to server.")
+                       setTimeout(()=>{
+                        redirect("/ul/"+window.sessionStorage.getItem("userID")+"/"+window.sessionStorage.getItem("userName"))
+                       },10000)
+                       
+                   }else{
+                       alert("network error.. contact admin for further details")
+                        //redirect("/")
+                   }
+                })
+                .catch(function (error) {
+                    console.log("error")
+                });
     }
 
     //function for the violation submit
-    function violationsubmit(){
+    function violationsubmit(violFlag){
+        //windingup the facerekog session
+        setrekogFlag(false)
 
+        //calculate the score
+        let scoreinc=0;
+        for(var j=0;j<questions.length;j++){
+            if(questions[j].ans===answeredQuestionsData[j]){
+                scoreinc=scoreinc+1
+            }
+        }
+        setscoreobtained(scoreinc)
+        console.log("score: "+scoreinc);
+        // axios 
+        const data={
+            "id": window.sessionStorage.getItem("userID")+""+window.sessionStorage.getItem("examID"),
+            "cred": cred,
+            "score": scoreinc,
+            "sid": window.sessionStorage.getItem("userID"),
+            "ans": answeredQuestionsData,
+            "sType": "violationSubmit",
+            "malprac": true,
+            "imageData": imagedata
+        }
+        // const json = {id:window.sessionStorage.getItem("userID")};  
+        //header configuration for the CORS
+        const config  = {
+                headers: {
+                   'Content-Type': 'application/json',
+                }}
+                axios.post('https://7pusl8hexl.execute-api.us-east-1.amazonaws.com/production', 
+                JSON.stringify(data),config)
+                .then(function (response) {
+                   if(response.data.status==="success"){
+                       alert("wait for few seconds... Data is being sent to server. Due to malpractice your is closed!")
+                       setTimeout(()=>{
+                        redirect("/ul/"+window.sessionStorage.getItem("userID")+"/"+window.sessionStorage.getItem("userName"))
+                       },10000)
+                       
+                   }else{
+                       alert("network error.. contact admin for further details")
+                        //redirect("/")
+                   }
+                })
+                .catch(function (error) {
+                    console.log("error")
+                });
     }
 
     //function for the periodic submit--every 2minutes
@@ -198,7 +335,7 @@ const Exam=()=>{
                                     <table className="table">
                                         <tr className="text-secondary">
                                             <td>Credibility Score</td>
-                                            <td>: 100</td>
+                                            <td>: {cred}</td>
                                         </tr>
                                         <tr className="text-secondary">
                                             <td>total Questions</td>
@@ -281,6 +418,7 @@ const Exam=()=>{
                                 }
                                 }}
                             >Next</button>  }
+                            {/* <button class="btn- btn-dark" onClick={dummyfunction}>kjefef</button> */}
                     </div>  
                 </div>
             </div>
