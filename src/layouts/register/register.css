@@ -14,3 +14,7 @@
   .register-heading{
     padding-bottom: 30px;
   }
+  .width-register{
+    max-width: 85vw;
+    width:450px;
+  }

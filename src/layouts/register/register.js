@@ -2,8 +2,14 @@ import React,{useState} from 'react';
 import ReactFileReader from 'react-file-reader';
 import axios from 'axios'
 import './register.css'
+import { useHistory } from "react-router-dom";
 
 const Register=()=>{
+    let history = useHistory();
+    const redirect=(path)=>{
+        history.push(path)
+    }
+
     const [email,setemail]=useState("");
     const [name,setname]=useState("");
     const [rollno,setrollno]=useState("");
@@ -17,7 +23,7 @@ const Register=()=>{
     const handleFiles = files => {
         setimage64(files.base64)
         setimagedata(files.fileList[0])
-        console.log(image64);
+        // console.log(image64);
         // console.log(files.fileList[0])
       }
 
@@ -49,12 +55,15 @@ const Register=()=>{
     //form submit handler
     const submitHandlerRegister=(event)=>{
         event.preventDefault();
-        if(image64 ==="" || passwordTest ===false){
+        if(image64 ==="" || passwordTest ===false ||dept===""){
             if(image64===""){
                 alert("Kindly upload the image.")
             }
             if(passwordTest===false ||passwordTest===null){
                 alert("Please fill the password field and submit.")
+            }
+            if(dept===""){
+                alert("Please select your department.")
             }
             
         }else{
@@ -71,8 +80,8 @@ const Register=()=>{
             axios.post('https://4tajhwi4ga.execute-api.us-east-1.amazonaws.com/production', 
             JSON.stringify(json),config)
                 .then(function (response) {
-                    alert(response.data);
-                    alert("A mail has been sent to your emailID. please verify it to continue")
+                    // alert(response.data);
+                    sendMail()
                 })
                 .catch(function (error) {
                     // console.log("error")
@@ -83,9 +92,40 @@ const Register=()=>{
        
     }
 
+    //send mail handler
+    function sendMail(){
+        //url https://hy3kqt59l2.execute-api.us-east-1.amazonaws.com/production
+        // axios 
+        const json ={Email: email,Name:name,ID:registerno};    
+        // console.log(QueryString.stringify(formData));  
+        //header configuration for the CORS
+        const config  = {
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+        }
+        axios.post('https://hy3kqt59l2.execute-api.us-east-1.amazonaws.com/production', 
+            JSON.stringify(json),config)
+                .then(function (response) {
+                    if(response.data.status==="success"){
+                        alert("A mail has been sent to your emailID. please verify it to continue.")
+                        redirect("/")
+                    }else{
+                        alert(response.data.message)
+                    }
+                })
+                .catch(function (error) {
+                    // console.log("error")
+                    alert("contact admin to fix the issue")
+                });
+
+
+        
+    }   
+
     return(
         <div className="register">
-            <div className="form-signin card shadow m-auto my-4 p-4">
+            <div className="form-signin card shadow m-auto my-4 p-4 width-register">
                 <form onSubmit={submitHandlerRegister}>
                     <div className="text-center ">
                         <h3 className="text-warning font-weight-bold register-heading">Registration Form</h3>

@@ -22,6 +22,7 @@ import Zone from './layouts/examZone2/zone'
 import Dash from './layouts/staffdash/dash'
 import StaffLogin from './layouts/staffLogin/staffLogin'
 
+import Mailauth from './layouts/mailauth/mailauth'
 
 
 function App() {
@@ -58,6 +59,10 @@ function App() {
         </Route>
         <Route path="/zone/:eid">
           <Zone/>
+        </Route>
+
+        <Route path="/mailauth/:id">
+          <Mailauth/>
         </Route>
       </Switch>
     </HashRouter>

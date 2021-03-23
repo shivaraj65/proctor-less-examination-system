@@ -38,15 +38,20 @@ const submitHandlerLogin=(event)=>{
             JSON.stringify(json),config)
             .then(function (response) {
                 console.log(response.data);
-                console.log(response.data.status)
+                // console.log(response.data.status)
                 // redirect to the userdash
-                if(response.data.status ==="verified"){
+                if(response.data.status ==="verified" && response.data.user_Cred.verifiedEmail===true){
                     window.sessionStorage.setItem('userID', response.data.user_Cred._id);
                     window.sessionStorage.setItem('userName', response.data.user_Cred.name);
                     window.sessionStorage.setItem('userRollno', response.data.user_Cred.rollno);
                     redirect("/ul/"+response.data.user_Cred._id+"/"+response.data.user_Cred.name);
                 }else{
-                    setPopupContent(response.data.status)
+                    if(response.data.status==="verified"){
+                        setPopupContent("Verify your account to login")
+                    }      
+                    else{
+                        setPopupContent("signup to continue..")
+                    }
                     handleShow()
                 }
             })
