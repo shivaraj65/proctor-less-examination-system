@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/proctor-less-examination-system/static/css/main.05e3ea6a.chunk.css",
-    "main.js": "/proctor-less-examination-system/static/js/main.67186d2a.chunk.js",
-    "main.js.map": "/proctor-less-examination-system/static/js/main.67186d2a.chunk.js.map",
+    "main.js": "/proctor-less-examination-system/static/js/main.a41c7ef0.chunk.js",
+    "main.js.map": "/proctor-less-examination-system/static/js/main.a41c7ef0.chunk.js.map",
     "runtime-main.js": "/proctor-less-examination-system/static/js/runtime-main.f0c9ee53.js",
     "runtime-main.js.map": "/proctor-less-examination-system/static/js/runtime-main.f0c9ee53.js.map",
-    "static/js/2.7c1f222f.chunk.js": "/proctor-less-examination-system/static/js/2.7c1f222f.chunk.js",
-    "static/js/2.7c1f222f.chunk.js.map": "/proctor-less-examination-system/static/js/2.7c1f222f.chunk.js.map",
+    "static/js/2.8d04665d.chunk.js": "/proctor-less-examination-system/static/js/2.8d04665d.chunk.js",
+    "static/js/2.8d04665d.chunk.js.map": "/proctor-less-examination-system/static/js/2.8d04665d.chunk.js.map",
     "static/js/3.e9410c85.chunk.js": "/proctor-less-examination-system/static/js/3.e9410c85.chunk.js",
     "static/js/3.e9410c85.chunk.js.map": "/proctor-less-examination-system/static/js/3.e9410c85.chunk.js.map",
     "index.html": "/proctor-less-examination-system/index.html",
     "static/css/main.05e3ea6a.chunk.css.map": "/proctor-less-examination-system/static/css/main.05e3ea6a.chunk.css.map",
-    "static/js/2.7c1f222f.chunk.js.LICENSE.txt": "/proctor-less-examination-system/static/js/2.7c1f222f.chunk.js.LICENSE.txt",
+    "static/js/2.8d04665d.chunk.js.LICENSE.txt": "/proctor-less-examination-system/static/js/2.8d04665d.chunk.js.LICENSE.txt",
     "static/media/App.css": "/proctor-less-examination-system/static/media/bg-mast.c0467377.jpg",
     "static/media/login-bg-123.4f8491a1.jpg": "/proctor-less-examination-system/static/media/login-bg-123.4f8491a1.jpg",
     "static/media/no_data_1.7b4fabb0.png": "/proctor-less-examination-system/static/media/no_data_1.7b4fabb0.png",
@@ -20,8 +20,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.f0c9ee53.js",
-    "static/js/2.7c1f222f.chunk.js",
+    "static/js/2.8d04665d.chunk.js",
     "static/css/main.05e3ea6a.chunk.css",
-    "static/js/main.67186d2a.chunk.js"
+    "static/js/main.a41c7ef0.chunk.js"
   ]
 }
