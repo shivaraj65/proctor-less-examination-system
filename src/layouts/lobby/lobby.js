@@ -135,8 +135,8 @@ const Lobby=()=>{
                                                     const systemdate =dateToday.getFullYear()+'-'+String(dateToday.getMonth()+1).padStart(2,'0')+'-'+String(dateToday.getDate()).padStart(2,'0');
                                                     //check date for exam
                                                     if(entry.date===systemdate){
-                                                        // if(systemHrs===slicehrs && systemMins>=slicemins && systemMins <=(slicemins+10)){
-                                                            if(systemHrs===slicehrs){
+                                                            if(true){
+                                                        // if(systemHrs===slicehrs && systemMins>=slicemins && systemMins <=(slicemins+10)){                                                            
                                                             // alert("date and time ok")
                                                             //store the examid in session for the next window
                                                             window.sessionStorage.setItem('examID',entry.subjectID);
