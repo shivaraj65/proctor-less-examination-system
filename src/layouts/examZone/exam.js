@@ -6,10 +6,10 @@ import Webcam from "react-webcam";
  
 const WebcamComponent = () => <Webcam />;
 
-
 const Exam=()=>{
     //states for the data from sever
     const [questiondata,setquestiondata]=useState(null)
+
     //state to hold the clock time
     const [timer,settimer] = useState(null)
     const [timerActive,setTimerActive] = useState(false)  
@@ -22,6 +22,11 @@ const Exam=()=>{
     //states for the answered questions
     const [answeredQuestionsData, setansweredQuestionsData] = useState(null)
 
+    //states for the monitoring purpose
+    const [cred,setcred]=useState(100)
+    const [imagedata,setimagedata]=useState(null)
+    const [fekogFlag,setrekogFlag]=useState(false)
+    const [facetimer,setfacetimer]=useState(0)
     useEffect(()=>{
          // axios 
          const json = {id:window.sessionStorage.getItem("examID")};  
@@ -40,6 +45,8 @@ const Exam=()=>{
                setNoOfQuestions(parseInt(response.data.payload.Item.NoOfQuestions))
                settimer(response.data.payload.Item.duration*60)
                setTimerActive(true)
+               setrekogFlag(true)
+               setimagedata([])
                let tempdata=[]
                for(var i=0;i<response.data.payload.Item.questions.length;i++){
                    tempdata.push(-1)
@@ -57,21 +64,70 @@ const Exam=()=>{
      useEffect(()=>{
         if(timerActive){
             timer > 0 && setTimeout(() => settimer(timer - 1), 1000);
-            if(timer===0){
-                // timeoutTrigger()
+            if(timer===0){                
                 autosubmit()
             }
         }  
       },[timer,timerActive])
 
+    //face rekognition module
     const webcamRef = React.useRef(null);
     const [imgSrc, setImgSrc] = React.useState(null);
   
     const capture = React.useCallback(() => {
       const imageSrc = webcamRef.current.getScreenshot({width: 500, height: 300});
       setImgSrc(imageSrc);
-      console.log(imageSrc);
+      faceRecok(imageSrc);
     }, [webcamRef, setImgSrc]);
+
+    //automated counter for the rekog transmitter
+    useEffect(()=>{
+        if(fekogFlag){
+            timer >= 10 && setTimeout(() => {
+                alert("rekog trigger"); 
+                //call the imagecapture--it will  call the facerecok....
+                capture()
+                setfacetimer(facetimer+1)
+            }, 6000);
+        }  
+      },[facetimer,fekogFlag])
+
+
+    function faceRecok(imaged){  
+        //axios request
+        const json = JSON.stringify({ image: imaged,rollno:window.sessionStorage.getItem("userRollno")});
+        const config  = {
+            headers: {
+                'Content-Type': 'application/json',
+            }}
+            axios.post(' https://clx74mh9ue.execute-api.us-east-1.amazonaws.com/production', 
+            json,config)
+            .then(function (response) {
+                
+                
+            })
+            .catch(function (error) {             
+                console.log("error")
+            });
+    
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     //function for the submit feature from submit button
     const submitbuttonSubmit=()=>{
@@ -79,8 +135,8 @@ const Exam=()=>{
         // https://7pusl8hexl.execute-api.us-east-1.amazonaws.com/production
         // axios 
         const data={
-            "id": "7220shiva",
-            "cred": 80,
+            "id": window.sessionStorage.getItem("userID")+""+window.sessionStorage.getItem("examID"),
+            "cred": cred,
             "score": 100,
             "sid": "7220",
             "ans": ["a", "b"],
@@ -94,6 +150,15 @@ const Exam=()=>{
                 headers: {
                    'Content-Type': 'application/json',
                 }}
+                axios.post('https://7pusl8hexl.execute-api.us-east-1.amazonaws.com/production', 
+                JSON.stringify(json),config)
+                .then(function (response) {
+                   
+                })
+                .catch(function (error) {
+                    
+                    console.log("error")
+                });
     }
 
     //function for the auto submit feature
@@ -108,7 +173,7 @@ const Exam=()=>{
 
     //function for the periodic submit--every 2minutes
     function periodicSubmit(){
-
+        //should be called via a timer
     }
 
 
