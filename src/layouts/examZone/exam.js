@@ -1,9 +1,10 @@
-import React,{useEffect,useState} from 'react';
+import React,{useEffect,useState,useCallback} from 'react';
 import axios from 'axios'
 import './exam.css';
 import Clock from './clock/clock'
 import Webcam from "react-webcam";
 import { useHistory } from "react-router-dom";
+import { FullScreen, useFullScreenHandle } from "react-full-screen";
  
 const WebcamComponent = () => <Webcam />;
 
@@ -13,6 +14,35 @@ const Exam=()=>{
      const redirect=(path)=>{
          history.push(path)
      }
+
+    //fullscreen setup
+    const [fullscreen,setFullscreen]=useState(false)
+    const screen1 = useFullScreenHandle();
+    const reportChange = useCallback((state, handle) => {
+        if (handle === screen1) {
+          console.log('Screen 1 went to', state, handle);
+          if(fullscreen ===true &&state===false){
+            //fullscreen is our handle... set at start and the end
+            //state is the current state held by the full screen component
+            console.log("violation due to exit full screen before the quiz ends")
+            //submit for violation
+            violationsubmit("malP")
+          }
+        }
+      }, [screen1]);
+
+    const fullscreenFunc=(value)=>{
+      if(value==="enter"){
+        //fullscreen flag is set to true
+        setFullscreen(true)
+        screen1.enter() 
+      }
+      if(value==="exit"){
+        //fullscreen flag is set to false
+        setFullscreen(false)
+        screen1.exit()
+      }
+    }
 
     //states for the data from sever
     const [questiondata,setquestiondata]=useState(null)
@@ -37,6 +67,7 @@ const Exam=()=>{
     const [facetimer,setfacetimer]=useState(0)
 
     useEffect(()=>{
+        fullscreenFunc("enter")
          // axios 
          const json = {id:window.sessionStorage.getItem("examID")};  
          //header configuration for the CORS
@@ -135,26 +166,11 @@ const Exam=()=>{
             });
        
     }, [imgSrc])
-    // function faceRecok(imagedataa){  
-        
-    // }
 
     function addurl(url){
                 setimagedata([...imagedata,{"url":url}])
                 console.log(imagedata)
     }   
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -195,6 +211,7 @@ const Exam=()=>{
                    if(response.data.status==="success"){
                        alert("wait for few seconds... Data is being sent to server.")
                        setTimeout(()=>{
+                        fullscreenFunc("exit")
                         redirect("/ul/"+window.sessionStorage.getItem("userID")+"/"+window.sessionStorage.getItem("userName"))
                        },10000)
                        
@@ -245,6 +262,7 @@ const Exam=()=>{
                    if(response.data.status==="success"){
                        alert("wait for few seconds... Data is being sent to server.")
                        setTimeout(()=>{
+                        fullscreenFunc("exit")
                         redirect("/ul/"+window.sessionStorage.getItem("userID")+"/"+window.sessionStorage.getItem("userName"))
                        },10000)
                        
@@ -293,8 +311,9 @@ const Exam=()=>{
                 JSON.stringify(data),config)
                 .then(function (response) {
                    if(response.data.status==="success"){
-                       alert("wait for few seconds... Data is being sent to server. Due to malpractice your is closed!")
+                       alert("wait for few seconds... Data is being sent to server. Due to malpractice your session is closed!")
                        setTimeout(()=>{
+                        fullscreenFunc("exit")
                         redirect("/ul/"+window.sessionStorage.getItem("userID")+"/"+window.sessionStorage.getItem("userName"))
                        },10000)
                        
@@ -317,9 +336,11 @@ const Exam=()=>{
 
     return(
         <div>
-            {/* <div className="user-background"></div> */}
+            
+            <FullScreen handle={screen1} onChange={reportChange}>
+            <div className="user-background"></div>
             <div className="container">
-                <div className="row pt-4">
+                <div className="row pt-4 pb-5">
                     <div className="col-lg-3 col-sm-12 custom-examSidebar">
                         <div className="">
                             <div className="cam-layout">
@@ -422,7 +443,7 @@ const Exam=()=>{
                     </div>  
                 </div>
             </div>
-               
+            </FullScreen> 
         </div>
     )
 }
