@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/proctor-less-examination-system/static/css/main.05e3ea6a.chunk.css",
-    "main.js": "/proctor-less-examination-system/static/js/main.e8d2aad7.chunk.js",
-    "main.js.map": "/proctor-less-examination-system/static/js/main.e8d2aad7.chunk.js.map",
+    "main.js": "/proctor-less-examination-system/static/js/main.d2575fae.chunk.js",
+    "main.js.map": "/proctor-less-examination-system/static/js/main.d2575fae.chunk.js.map",
     "runtime-main.js": "/proctor-less-examination-system/static/js/runtime-main.f0c9ee53.js",
     "runtime-main.js.map": "/proctor-less-examination-system/static/js/runtime-main.f0c9ee53.js.map",
     "static/js/2.7c1f222f.chunk.js": "/proctor-less-examination-system/static/js/2.7c1f222f.chunk.js",
@@ -22,6 +22,6 @@
     "static/js/runtime-main.f0c9ee53.js",
     "static/js/2.7c1f222f.chunk.js",
     "static/css/main.05e3ea6a.chunk.css",
-    "static/js/main.e8d2aad7.chunk.js"
+    "static/js/main.d2575fae.chunk.js"
   ]
 }
