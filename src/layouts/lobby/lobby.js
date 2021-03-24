@@ -168,9 +168,9 @@ const Lobby=()=>{
                     <button 
                         className="btn btn-info"
                         onClick={()=>{
-                            redirect("/exam")
+                            redirect("/feedback")
                         }   
-                    }>tester for the invigilation setup</button>
+                    }>feedback form</button>
                 </div>
             </div>
         </div>

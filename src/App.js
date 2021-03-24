@@ -24,6 +24,8 @@ import StaffLogin from './layouts/staffLogin/staffLogin'
 
 import Mailauth from './layouts/mailauth/mailauth'
 
+//feed back form
+import Feedback from './layouts/lobby/feedbackform/feedback'
 
 function App() {
   return (
@@ -61,6 +63,9 @@ function App() {
           <Zone/>
         </Route>
 
+        <Route path="/feedback">
+          <Feedback/>
+        </Route>
         <Route path="/mailauth/:id">
           <Mailauth/>
         </Route>
