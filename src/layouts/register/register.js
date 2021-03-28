@@ -195,7 +195,8 @@ const Register=()=>{
                     </div>
                     <div className="form-group">
                         <label className="text-secondary font-italic">Upload your Image</label>
-                        <small id="emailHelp" className="form-text text-warning pl-2">Upload your image in <span className="badge badge-warning">JPEG/JPG</span> format<br></br><span className="badge badge-pill badge-danger">ELSE:</span> cry while taking examination</small>
+                        <small id="emailHelp" className="form-text text-warning pl-2">Upload your image in <span className="badge badge-warning">JPEG</span> format<br></br></small>
+                        {/* <span className="badge badge-pill badge-danger">ELSE:</span> cry while taking examination */}
                         <ReactFileReader handleFiles={handleFiles} fileTypes={[".jpeg",'.jpg']} base64={true}>
                             <div className="row px-3 pt-2 text-center">
                                 <div className="col-xs-4">

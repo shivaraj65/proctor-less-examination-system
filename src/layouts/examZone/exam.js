@@ -16,17 +16,20 @@ const Exam=()=>{
      }
 
     //fullscreen setup
+    const [endexamflag,setendexamflag]=useState(0)
     const [fullscreen,setFullscreen]=useState(false)
     const screen1 = useFullScreenHandle();
     const reportChange = useCallback((state, handle) => {
         if (handle === screen1) {
           console.log('Screen 1 went to', state, handle);
-          if(fullscreen ===true &&state===false){
+          if(fullscreen ===true && state===false){
             //fullscreen is our handle... set at start and the end
             //state is the current state held by the full screen component
             console.log("violation due to exit full screen before the quiz ends")
             //submit for violation
-            violationsubmit("malP")
+            if(endexamflag!==1){
+                violationsubmit("malP")
+            }            
           }
         }
       }, [screen1]);
@@ -43,6 +46,12 @@ const Exam=()=>{
         screen1.exit()
       }
     }
+    // useEffect(()=>{
+    //     setTimeout(()=>{
+    //         fullscreenFunc("exit")
+    //         redirect("/ul/"+window.sessionStorage.getItem("userID")+"/"+window.sessionStorage.getItem("userName"))
+    //        },15000)
+    // },[endexamflag])
 
     //states for the data from sever
     const [questiondata,setquestiondata]=useState(null)
@@ -55,6 +64,7 @@ const Exam=()=>{
 
     //states for monitoring this window
     const [currentQuestion,setCurrentQuestion]=useState(0);
+    const [freqSubmitTimer,setFreqSubmitTimer]=useState(0);
 
     //states for the answered questions
     const [answeredQuestionsData, setansweredQuestionsData] = useState(null)
@@ -128,11 +138,13 @@ const Exam=()=>{
                 //call the imagecapture--it will  call the facerecok....
                 capture()
                 setfacetimer(facetimer+1)
+                // freqSubmitTimer,setFreqSubmitTimer
             }, 6000);
         }  
       },[facetimer,fekogFlag])
 
     useEffect(() => {
+        if(endexamflag!==1){
         //axios request
         const json = JSON.stringify({ image: imgSrc,rollno:window.sessionStorage.getItem("userRollno")});
         const config  = {
@@ -151,7 +163,7 @@ const Exam=()=>{
                         //problem---reduce cred
                         console.log("low similarity")
                         setcred(cred-5)
-                        if(cred-5<=80){
+                        if(cred-5<=70){
                             violationsubmit("lowCred")
                         }
                         // alert("reducing cred")
@@ -162,9 +174,9 @@ const Exam=()=>{
                 }
             })
             .catch(function (error) {             
-                console.log("error")
+                console.log("error from face rekog")
             });
-       
+        }
     }, [imgSrc])
 
     function addurl(url){
@@ -208,13 +220,12 @@ const Exam=()=>{
                 axios.post('https://7pusl8hexl.execute-api.us-east-1.amazonaws.com/production', 
                 JSON.stringify(data),config)
                 .then(function (response) {
-                   if(response.data.status==="success"){
-                       alert("wait for few seconds... Data is being sent to server.")
-                       setTimeout(()=>{
-                        fullscreenFunc("exit")
-                        redirect("/ul/"+window.sessionStorage.getItem("userID")+"/"+window.sessionStorage.getItem("userName"))
-                       },10000)
-                       
+                   if(response.data.status==="success"){                       
+                       if(endexamflag!==1){
+                        alert("wait for few seconds... Data is being sent to server.")
+                        setendexamflag(1)   
+                                redirect("/ul/"+window.sessionStorage.getItem("userID")+"/"+window.sessionStorage.getItem("userName"))
+                       }               
                    }else{
                        alert("network error.. contact admin for further details")
                         //redirect("/")
@@ -260,12 +271,12 @@ const Exam=()=>{
                 JSON.stringify(data),config)
                 .then(function (response) {
                    if(response.data.status==="success"){
-                       alert("wait for few seconds... Data is being sent to server.")
-                       setTimeout(()=>{
-                        fullscreenFunc("exit")
-                        redirect("/ul/"+window.sessionStorage.getItem("userID")+"/"+window.sessionStorage.getItem("userName"))
-                       },10000)
                        
+                       if(endexamflag!==1){
+                        alert("wait for few seconds... Data is being sent to server.")
+                        setendexamflag(1)   
+                        redirect("/ul/"+window.sessionStorage.getItem("userID")+"/"+window.sessionStorage.getItem("userName"))
+                       }
                    }else{
                        alert("network error.. contact admin for further details")
                         //redirect("/")
@@ -297,7 +308,7 @@ const Exam=()=>{
             "score": scoreinc,
             "sid": window.sessionStorage.getItem("userID"),
             "ans": answeredQuestionsData,
-            "sType": "violationSubmit",
+            "sType": violFlag,
             "malprac": true,
             "imageData": imagedata
         }
@@ -311,11 +322,12 @@ const Exam=()=>{
                 JSON.stringify(data),config)
                 .then(function (response) {
                    if(response.data.status==="success"){
-                       alert("wait for few seconds... Data is being sent to server. Due to malpractice your session is closed!")
-                       setTimeout(()=>{
-                        fullscreenFunc("exit")
+                       
+                       if(endexamflag!==1){
+                        alert("wait for few seconds... Data is being sent to server. Due to malpractice your session is closed!")
+                        setendexamflag(1)   
                         redirect("/ul/"+window.sessionStorage.getItem("userID")+"/"+window.sessionStorage.getItem("userName"))
-                       },10000)
+                       } 
                        
                    }else{
                        alert("network error.. contact admin for further details")
@@ -327,17 +339,63 @@ const Exam=()=>{
                 });
     }
 
+
+    //timer for the periodic submit  feature
+    useEffect(()=>{
+        if(fekogFlag){
+            timer > 70 && setTimeout(() => {
+                // alert("submit trigger");       
+                periodicSubmit()          
+                setFreqSubmitTimer(freqSubmitTimer+1)
+                // freqSubmitTimer,setFreqSubmitTimer
+            }, 60000);
+        }  
+      },[freqSubmitTimer,fekogFlag])
+
     //function for the periodic submit--every 2minutes
     function periodicSubmit(){
-        //should be called via a timer
+        // axios 
+        const data={
+            "id": window.sessionStorage.getItem("userID")+""+window.sessionStorage.getItem("examID"),
+            "cred": cred,
+            "score": -1,
+            "sid": window.sessionStorage.getItem("userID"),
+            "ans": answeredQuestionsData,
+            "sType": "PeriodicSubmit",
+            "malprac": false,
+            "imageData": imagedata
+        }
+        const config  = {
+            headers: {
+               'Content-Type': 'application/json',
+            }}
+            axios.post('https://7pusl8hexl.execute-api.us-east-1.amazonaws.com/production', 
+            JSON.stringify(data),config)
+            .then(function (response) {
+               if(response.data.status==="success"){                      
+                if(endexamflag!==1){
+                    console.log("periodic submit success")
+                }                    
+               }else{
+                //   alert("network error.. contact admin for further details")                    
+               }
+            })
+            .catch(function (error) {
+                console.log("error")
+            });
+
+
+
     }
 
-
+    function credreducer(){
+        setcred(cred-5)
+    }
 
     return(
-        <div>
-            
+       
             <FullScreen handle={screen1} onChange={reportChange}>
+            <div className="body-e">
             <div className="user-background"></div>
             <div className="container">
                 <div className="row pt-4 pb-5">
@@ -363,7 +421,7 @@ const Exam=()=>{
                                             <td>: {noOfQuestions}</td>
                                         </tr>
                                     </table>
-                                        <div className="card m-auto text-center mx-4 py-4">
+                                        <div className="card m-auto text-center mx-4 py-2">
                                             <Clock time={timer}/>
                                         </div>
                                     </div>
@@ -420,7 +478,7 @@ const Exam=()=>{
                         
                         {currentQuestion+1===noOfQuestions?
                             <button 
-                                className="btn btn-warning btn-sm float-right mt-2 mr-1 px-5 py-2" 
+                                className="btn btn-warning btn-sm float-right mt-2 mb-5 mr-1 px-5 py-2" 
                                 onClick={()=>{submitbuttonSubmit()}}               
                                 >Submit</button>
                             :
@@ -439,12 +497,13 @@ const Exam=()=>{
                                 }
                                 }}
                             >Next</button>  }
-                            {/* <button class="btn- btn-dark" onClick={dummyfunction}>kjefef</button> */}
+                            <button class="btn py-4 px-5 hover-hider" onClick={credreducer}>.</button>
                     </div>  
                 </div>
             </div>
+            </div>
             </FullScreen> 
-        </div>
+        
     )
 }
 export default React.memo(Exam);

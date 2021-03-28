@@ -30,7 +30,7 @@ const Create=()=>{
      const submitHandle=()=>{
         handleClose()
         // axios 
-        const json = {staffID:window.sessionStorage.getItem("staffID"),staffName:window.sessionStorage.getItem("staffName"),subjectID: id,name:name,noQues:noOfQuestions,date:date,time:time,questions:questions};  
+        const json = {staffID:window.sessionStorage.getItem("staffID"),staffName:window.sessionStorage.getItem("staffName"),subjectID: id,name:name,noQues:noOfQuestions,date:date,time:time,questions:questions,duration:duration,dept:dept};  
         console.log(json)
         //header configuration for the CORS
         const config  = {
@@ -61,7 +61,6 @@ const Create=()=>{
                     // handleShow();
                     console.log("error")
                 });
-
 
      }
      

@@ -17,7 +17,7 @@ const Dash =()=>{
                 <div className="row nav-padding ">                     
                     <div className="col-md-3">
                         <div className="card p-4 card-shadow card-enhancer">
-                        <h1 className="h5 text-secondary text-center"><strong>Staff Control Panel</strong></h1>
+                        <h1 className="h5 text-secondary text-center"><strong>Staff C-Panel</strong></h1>
                             <div className="px-2 py-2">
                                 <button 
                                     className="btn btn-block btn-outline-success font1 my-2 mt-4"
@@ -31,30 +31,30 @@ const Dash =()=>{
                                         setrightPanelselector("manage")
                                     }}
                                 ><strong>Manage</strong></button>
-                                <button 
+                                {/* <button 
                                     className="btn btn-block btn-outline-secondary font1 my-3"
                                     onClick={()=>{
                                         setrightPanelselector("override")
                                     }}
-                                ><strong>Override</strong></button>
-                                <button 
+                                ><strong>Override</strong></button> */}
+                                {/* <button 
                                     className="btn btn-block btn-outline-info font1 my-3"
                                     onClick={()=>{
                                         setrightPanelselector("viewResult")
                                     }}
-                                ><strong>View Result</strong></button>
+                                ><strong>View Result</strong></button> */}
                                 <button 
                                     className="btn btn-block btn-outline-danger font1 my-3"
                                     onClick={()=>{
                                         setrightPanelselector("delete")
                                     }}
                                 ><strong>Delete</strong></button>
-                                <button 
+                                {/* <button 
                                     className="btn btn-block btn-outline-dark font1 my-3"
                                     onClick={()=>{
                                         setrightPanelselector("publish")
                                     }}
-                                ><strong>Publish Result</strong></button>
+                                ><strong>Publish Result</strong></button> */}
                                 <button 
                                     className="btn btn-block btn-outline-dark font1 my-2"
                                     onClick={()=>{
