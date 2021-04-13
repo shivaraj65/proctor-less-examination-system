@@ -44,6 +44,7 @@ const submitHandlerLogin=(event)=>{
                     window.sessionStorage.setItem('userID', response.data.user_Cred._id);
                     window.sessionStorage.setItem('userName', response.data.user_Cred.name);
                     window.sessionStorage.setItem('userRollno', response.data.user_Cred.rollno);
+                    window.sessionStorage.setItem('userDept', response.data.user_Cred.department);
                     redirect("/ul/"+response.data.user_Cred._id+"/"+response.data.user_Cred.name);
                 }else{
                     if(response.data.status==="verified"){

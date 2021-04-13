@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import './registeration.css';
 
 import axios from 'axios'
@@ -18,41 +18,39 @@ const RegisterationZone=()=>{
     const handleShow = () => setShow(true);
 
 
-    const [pageno, setpageno] = useState("0")
-    const [dept, setdept] = useState("")
     const [edata,setedata]=useState(null)
     const [selectedData, setselectedData] = useState(null)
     const [checkbox,setcheckbox]= useState(null)
 
-    const submitdept=()=>{
-        // axios 
-        const json = {dept:dept};  
-        // console.log(json)
-        //header configuration for the CORS
-        const config  = {
-                headers: {
-                   'Content-Type': 'application/json',
-                }}
-        axios.post('https://3ki1z5thvi.execute-api.us-east-1.amazonaws.com/production', 
-        JSON.stringify(json),config)
-        .then(function (response) {
-           if(response.data.message.Count!==0){
-                setedata(response.data.message.Items)
-                // console.log(response.data.message.Items)
-                setselectedData([]);
-                let temp=[];
-                for(let i=0;i<response.data.message.Count;i++){
-                    temp.push(false)
-                }
-                setcheckbox(temp)
-           }
-        })
-        .catch(function (error) {
-            alert("something went wrong. Please try again.")
-            console.log("error")
-        });        
-    }
 
+    useEffect(()=>{
+        // axios 
+        const json = {dept:window.sessionStorage.getItem("userDept")};  
+        const config  = {
+            headers: {
+               'Content-Type': 'application/json',
+            }}
+            axios.post('https://3ki1z5thvi.execute-api.us-east-1.amazonaws.com/production', 
+            JSON.stringify(json),config)
+            .then(function (response) {
+               if(response.data.message.Count!==0){
+                    setedata(response.data.message.Items)
+                    // console.log(response.data.message.Items)
+                    setselectedData([]);
+                    let temp=[];
+                    for(let i=0;i<response.data.message.Count;i++){
+                        temp.push(false)
+                    }
+                    setcheckbox(temp)
+               }
+            })
+            .catch(function (error) {
+                alert("something went wrong. Please try again.")
+                console.log("error")
+            });   
+    },[])
+
+   
     const FinalSubmit=()=>{
         //https://e0a5x5pqle.execute-api.us-east-1.amazonaws.com/production
         let tempdata=[];
@@ -63,7 +61,7 @@ const RegisterationZone=()=>{
         }
         setselectedData(tempdata)
         // axios 
-        const json = {uID:window.sessionStorage.getItem("userID"),sName:window.sessionStorage.getItem("userName"),dept:dept,rData:tempdata};  
+        const json = {uID:window.sessionStorage.getItem("userID"),sName:window.sessionStorage.getItem("userName"),dept:window.sessionStorage.getItem("userDept"),rData:tempdata};  
         // console.log(json)
         //header configuration for the CORS
         const config  = {
@@ -119,37 +117,8 @@ const RegisterationZone=()=>{
                     <hr/>
                     <p className="text-center text-secondary">register for your semester exams here</p>
 
-                    {pageno && pageno==="0"?
-                        <div className="container-custom-register p-4">
-                            <label className="text-secondary muted">Select your department here:</label>
-                            <select 
-                                className="form-control text-info"
-                                onChange={(e)=>{setdept(e.target.value)}}
-                                value={dept}
-                                >
-                                <option></option>
-                                <option>cse</option>
-                                <option>ece</option>
-                                <option>eee</option>
-                                <option>mech</option>
-                            </select>
-                            <button 
-                                type="button" 
-                                className="btn btn-outline-success btn-block float-md-right mt-4"
-                                onClick={()=>{
-                                    if(dept===""){
-                                        alert("enter your department to continue")
-                                    }else{
-                                        submitdept()
-                                        setpageno("1")
-                                    }
-                                }}
-                            >submit</button> 
-                        </div>
-                    :null}
-                    {pageno && pageno==="1"?
-                        <div>
-                                
+                  
+                        <div>                                
                         <div className="row mt-4 mx-2">
                             <div className="col-sm-1 text-center">
                                 
@@ -205,9 +174,6 @@ const RegisterationZone=()=>{
                                 }}
                             >CONFIRM</button> 
                         </div>
-                    :null}
-                    
-                   
                 </div>
             </div>
             {/* popup */}

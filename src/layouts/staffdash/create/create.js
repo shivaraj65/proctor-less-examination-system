@@ -104,10 +104,10 @@ const Create=()=>{
                                                         value={dept}
                                                         >        
                                                         <option></option>                                                
-                                                        <option>cse</option>
-                                                        <option>ece</option>
-                                                        <option>eee</option>
-                                                        <option>mech</option>
+                                                        <option>CSE</option>
+                                                        <option>ECE</option>
+                                                        <option>EEE</option>
+                                                        <option>MECH</option>
                                                     </select>
                                     </div>
                                 </div>
@@ -298,7 +298,7 @@ const Create=()=>{
                     {pageno===0?
                         <button 
                             type="button" 
-                            className="btn btn-primary float-md-right ml-3"
+                            className="btn btn-primary float-md-right ml-3 px-5"
                             onClick={()=>{
                                 //validate the fields
                                 if(id!=="" && name !=="" && noOfQuestions!==""&&date!==""&&time!==""){

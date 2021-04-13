@@ -81,7 +81,7 @@ const Lobby=()=>{
                         <div className="card p-4 my-4 card-enhancer">
                             <label className="text-secondary text-center">Test your Environment</label> 
                             <button 
-                                className="btn btn-lg btn-outline-secondary btn-block my-3 font-weight-bold" 
+                                className="btn btn-lg btn-outline-dark btn-block my-3 font-weight-bold" 
                                 onClick={()=>{
                                     redirect("/test")
                                 }}
@@ -96,11 +96,17 @@ const Lobby=()=>{
                                 }}
                             >Registration Zone</button>
                         </div>
+                        <button 
+                        className="btn btn-success btn-block"
+                        onClick={()=>{
+                            redirect("/feedback")
+                        }   
+                        }>feedback form</button>
                 </div>
 
                 {/* right pane */}
                 <div className="col-md-8 py-4 card my-4 table-scroll-x">
-                    <h5 className="text-secondary text-center mb-3">Registered Exams</h5>
+                    <h5 className="text-secondary text-center mb-3">Your Exams</h5>
                     <table className="table table-striped table-light table table-borderless table-hover ">
                         <thead>
                             <tr className="text-dark">
@@ -135,8 +141,8 @@ const Lobby=()=>{
                                                     const systemdate =dateToday.getFullYear()+'-'+String(dateToday.getMonth()+1).padStart(2,'0')+'-'+String(dateToday.getDate()).padStart(2,'0');
                                                     //check date for exam
                                                     if(entry.date===systemdate){
-                                                            if(true){
-                                                        // if(systemHrs===slicehrs && systemMins>=slicemins && systemMins <=(slicemins+10)){                                                            
+                                                            // if(true){
+                                                        if(systemHrs===slicehrs && systemMins>=slicemins && systemMins <=(slicemins+10)){                                                            
                                                             // alert("date and time ok")
                                                             //store the examid in session for the next window
                                                             window.sessionStorage.setItem('examID',entry.subjectID);
@@ -164,13 +170,7 @@ const Lobby=()=>{
                                 <span className="sr-only">Loading...</span>
                             </div>
                         </div>:null}
-                        
-                    <button 
-                        className="btn btn-info"
-                        onClick={()=>{
-                            redirect("/feedback")
-                        }   
-                    }>feedback form</button>
+                            
                 </div>
             </div>
         </div>

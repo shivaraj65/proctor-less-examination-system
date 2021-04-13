@@ -1,7 +1,12 @@
 import React from 'react'
+import { useHistory } from "react-router-dom";
+
 
 const SNav=()=>{
-
+    let history = useHistory();
+    const redirect=(path)=>{
+        history.push(path)
+    }
     return(
         <nav className="navbar navbar-expand-lg navbar-light bg-primary-custom fixed-top py-3" id="mainNav" style={{backgroundImage: "linear-gradient(to top, rgb(182, 255, 210,0.3), #f2e3bd88)",opacity:"0.7"}}>
             <div className="container">
@@ -14,11 +19,13 @@ const SNav=()=>{
                             <h1 className="nav-link text-dark active">Home</h1> 
                         </li> */}
                         <li className="nav-item">
-                        <h1 className="nav-link text-dark">USER NAME</h1>
+                        <h1 className="nav-link text-info btn">{window.sessionStorage.getItem("staffName")}</h1>
                         {/* dropdown showing user credentials */}
                         </li>
                         <li className="nav-item">
-                        <h1 className="nav-link text-dark">Logout</h1>
+                        <h1 className="nav-link text-dark btn" onClick={()=>{
+                            redirect("/")
+                        }} >Logout</h1>
                         </li>
                     </ul>
                 </div>

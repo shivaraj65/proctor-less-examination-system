@@ -167,6 +167,12 @@ const Exam=()=>{
                             violationsubmit("lowCred")
                         }
                         // alert("reducing cred")
+                    }else{
+                        if(cred<=98){
+                            setcred(cred+2)
+                        }else if(cred>98 && cred<100){
+                            setcred(100)
+                        }
                     }
                 }else if(response.data.rekog.UnmatchedFaces.length>=1 ||response.data.rekog.FaceMatches.length===0 ||response.data.rekog.FaceMatches.length>1){
                     violationsubmit("malP")
