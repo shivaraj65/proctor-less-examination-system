@@ -6,6 +6,7 @@ import Nodata from '../../assets/images/no_data_1.png'
 import Create from './create/create'
 import Delete from './delete/delete'
 import Invite from './invite/invite'
+import Manage from './manage/manage'
 
 const Dash =()=>{
     const [rightPanelselector, setrightPanelselector] = useState(null);
@@ -71,6 +72,7 @@ const Dash =()=>{
                             {rightPanelselector==="create"?<Create/>:null}
                             {rightPanelselector==="delete"?<Delete/>:null}
                             {rightPanelselector==="invite"?<Invite/>:null}
+                            {rightPanelselector==="manage"?<Manage/>:null}
                         </div>
                     </div>
                 </div> 
