@@ -3,14 +3,14 @@ import axios from 'axios'
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button'
 
-const Manage =()=>{
+const Rtm=()=>{
     const [data,setData]=useState(null)
 
     // states and function for the modal
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false); 
     const handleShow = () => setShow(true);
-    
+
     useEffect(()=>{
         // axios 
         const json = {sid:window.sessionStorage.getItem("staffID")};  
@@ -33,10 +33,11 @@ const Manage =()=>{
                 console.log("error")
             });   
     },[])
+
     return(
-        <div>    
-            <h4 className="text-center text-success">Management Console</h4>
-            <hr/>        
+        <div>
+            <h4 className="text-center text-success">Monitoring Wizard</h4>
+            <hr/>
             {data && data.map((entry,index)=>{
                 return(
                     <div className="row mt-4 hovered" key={index}>
@@ -63,6 +64,7 @@ const Manage =()=>{
                         <span className="sr-only">Loading...</span>
                     </div>
                 </div>:null}
+
             {/* popup  */}
             <Modal
                     show={show}
@@ -70,31 +72,17 @@ const Manage =()=>{
                     backdrop="static"
                     keyboard={false}
                     centered
-                    // size="lg"
+                    size="lg"
                 >
                 <Modal.Header closeButton>
                     <Modal.Title>&lt;meriTTrack&gt;</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <h5 className="text-primary">it0001</h5>
-                    <table className="text-secondary">
-                        <tr>
-                            <td>No of students Attended</td>
-                            <td>: 2</td>
-                        </tr>
-                        <tr>
-                            <td>No of Questions</td>
-                            <td>: 10</td>
-                        </tr>
-                        <tr>
-                            <td>Date of Examination</td>
-                            <td>: 20-3-2021</td>
-                        </tr>
-                        <tr>
-                            <td>Duration</td>
-                            <td>: 10</td>
-                        </tr>
-                    </table>
+                    <p>check for back end</p>
+                    <p>route the backend</p>
+                    <p>fetch list of students attended the particular exam</p>
+                    <p>fetch the particular candidates exam data -exam images +personal info from the bio</p>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="danger" onClick={handleClose}>
@@ -105,4 +93,4 @@ const Manage =()=>{
         </div>
     )
 }
-export default React.memo(Manage)
+export default React.memo(Rtm)

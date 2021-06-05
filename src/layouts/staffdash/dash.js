@@ -7,6 +7,7 @@ import Create from './create/create'
 import Delete from './delete/delete'
 import Invite from './invite/invite'
 import Manage from './manage/manage'
+import Rtm from './rtm/rtm'
 
 const Dash =()=>{
     const [rightPanelselector, setrightPanelselector] = useState(null);
@@ -73,6 +74,7 @@ const Dash =()=>{
                             {rightPanelselector==="delete"?<Delete/>:null}
                             {rightPanelselector==="invite"?<Invite/>:null}
                             {rightPanelselector==="manage"?<Manage/>:null}
+                            {rightPanelselector==="rtm"?<Rtm/>:null}
                         </div>
                     </div>
                 </div> 
