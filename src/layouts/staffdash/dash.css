@@ -23,3 +23,22 @@
     border-left: 0.5px solid #da2929b4;
     border-radius: 10px;
 }
+
+/* styles for the rtm */
+.overflow-control{
+    height:320px;
+    overflow-y: scroll;
+}
+
+.custom-image{
+    margin-bottom:15px;
+    margin-top:5px;
+    width:300px;
+    height:auto;
+    /* height:700px; */
+}
+.custom-image-1{
+    margin-bottom:5px;
+    margin-top:10px;
+    max-height: 250px;
+}
