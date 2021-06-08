@@ -80,7 +80,7 @@ const Manage =()=>{
                     <table className="text-secondary">
                         <tr>
                             <td>No of students Attended</td>
-                            <td>: 2</td>
+                            <td>: 1</td>
                         </tr>
                         <tr>
                             <td>No of Questions</td>

@@ -4,7 +4,8 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button'
 
 const datas=[
-             {id:"it0001",name:"internet programming"}
+             {id:"it0001",name:"internet programming"},
+             {id:"123",name:"abc"}
             ]
 const Delete =()=>{
     const [data,setdata]=useState(datas);   
@@ -13,7 +14,7 @@ const Delete =()=>{
     const handleClose = () => setShow(false); 
     const handleShow = () => setShow(true);
     const dummyCleaner=()=>{
-        setdata([])
+        setdata([{id:"it0001",name:"internet programming"}])
         handleClose()
     }
     return(
